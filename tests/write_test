@@ -1,0 +1,136 @@
+#! /home/gho705/opt/iverilog/bin/vvp
+:ivl_version "0.9.5 " "(v0_9_5)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x168c140 .scope module, "testbench" "testbench" 2 1;
+ .timescale 0 0;
+v0x16a7b70_0 .net "busW", 31 0, L_0x16a8310; 1 drivers
+v0x16a7bf0_0 .var "clk", 0 0;
+v0x16a7cc0_0 .var "dmem", 31 0;
+v0x16a7d90_0 .var "execresult", 31 0;
+v0x16a7e60_0 .var "mem2reg", 0 0;
+v0x16a7f30_0 .net "regwr", 0 0, v0x16a7130_0; 1 drivers
+v0x16a8000_0 .var "regwrin", 0 0;
+v0x16a80d0_0 .net "rw", 4 0, v0x16a7210_0; 1 drivers
+v0x16a81f0_0 .var "rwin", 4 0;
+S_0x168c230 .scope module, "writereg" "Write" 2 9, 3 31, S_0x168c140;
+ .timescale 0 0;
+v0x16a7290_0 .alias "busW", 31 0, v0x16a7b70_0;
+v0x16a7340_0 .net "clk", 0 0, v0x16a7bf0_0; 1 drivers
+v0x16a73f0_0 .net "dmemin", 31 0, v0x16a7cc0_0; 1 drivers
+v0x16a74a0_0 .net "dmemout", 31 0, v0x16a6f00_0; 1 drivers
+v0x16a7550_0 .net "execresultin", 31 0, v0x16a7d90_0; 1 drivers
+v0x16a75d0_0 .net "execresultout", 31 0, v0x16a6f80_0; 1 drivers
+v0x16a76a0_0 .net "mem2regin", 0 0, v0x16a7e60_0; 1 drivers
+v0x16a7720_0 .net "mem2regout", 0 0, v0x16a7080_0; 1 drivers
+v0x16a7840_0 .alias "regwr", 0 0, v0x16a7f30_0;
+v0x16a78c0_0 .net "regwritein", 0 0, v0x16a8000_0; 1 drivers
+v0x16a79a0_0 .alias "rw", 4 0, v0x16a80d0_0;
+v0x16a7a50_0 .net "rwin", 4 0, v0x16a81f0_0; 1 drivers
+S_0x16a69a0 .scope module, "writereg" "WrRegister" 3 41, 3 1, S_0x168c230;
+ .timescale 0 0;
+v0x16a6ad0_0 .alias "clk", 0 0, v0x16a7340_0;
+v0x16a6b90_0 .alias "ddmem", 31 0, v0x16a73f0_0;
+v0x16a6c30_0 .alias "dexecresult", 31 0, v0x16a7550_0;
+v0x16a6cd0_0 .alias "dmem2reg", 0 0, v0x16a76a0_0;
+v0x16a6d80_0 .alias "dregwr", 0 0, v0x16a78c0_0;
+v0x16a6e20_0 .alias "drw", 4 0, v0x16a7a50_0;
+v0x16a6f00_0 .var "qdmem", 31 0;
+v0x16a6f80_0 .var "qexecresult", 31 0;
+v0x16a7080_0 .var "qmem2reg", 0 0;
+v0x16a7130_0 .var "qregwr", 0 0;
+v0x16a7210_0 .var "qrw", 4 0;
+E_0x16a67f0 .event posedge, v0x16a6ad0_0;
+S_0x168f000 .scope module, "sourcemux" "mux_2to1_n" 3 42, 4 1, S_0x168c230;
+ .timescale 0 0;
+P_0x167bce8 .param/l "n" 4 2, +C4<0100000>;
+L_0x16a7940 .functor XNOR 1, v0x16a7080_0, C4<0>, C4<0>, C4<0>;
+v0x168f0f0_0 .net *"_s0", 0 0, C4<0>; 1 drivers
+v0x16a6630_0 .net *"_s2", 0 0, L_0x16a7940; 1 drivers
+v0x16a66d0_0 .alias "sel", 0 0, v0x16a7720_0;
+v0x16a6770_0 .alias "src0", 31 0, v0x16a75d0_0;
+v0x16a6820_0 .alias "src1", 31 0, v0x16a74a0_0;
+v0x16a68c0_0 .alias "z", 31 0, v0x16a7b70_0;
+L_0x16a8310 .functor MUXZ 32, v0x16a6f00_0, v0x16a6f80_0, L_0x16a7940, C4<>;
+    .scope S_0x16a69a0;
+T_0 ;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x16a7080_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x16a7130_0, 0, 0;
+    %ix/load 0, 5, 0;
+    %assign/v0 v0x16a7210_0, 0, 0;
+    %ix/load 0, 32, 0;
+    %assign/v0 v0x16a6f00_0, 0, 0;
+    %ix/load 0, 32, 0;
+    %assign/v0 v0x16a6f80_0, 0, 0;
+    %end;
+    .thread T_0;
+    .scope S_0x16a69a0;
+T_1 ;
+    %wait E_0x16a67f0;
+    %load/v 8, v0x16a6cd0_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x16a7080_0, 0, 8;
+    %load/v 8, v0x16a6d80_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x16a7130_0, 0, 8;
+    %load/v 8, v0x16a6e20_0, 5;
+    %ix/load 0, 5, 0;
+    %assign/v0 v0x16a7210_0, 0, 8;
+    %load/v 8, v0x16a6b90_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v0x16a6f00_0, 0, 8;
+    %load/v 8, v0x16a6c30_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v0x16a6f80_0, 0, 8;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x168c140;
+T_2 ;
+    %delay 1, 0;
+    %load/v 8, v0x16a7bf0_0, 1;
+    %inv 8, 1;
+    %set/v v0x16a7bf0_0, 8, 1;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0x168c140;
+T_3 ;
+    %set/v v0x16a7bf0_0, 1, 1;
+    %set/v v0x16a8000_0, 0, 1;
+    %set/v v0x16a81f0_0, 0, 5;
+    %set/v v0x16a7e60_0, 0, 1;
+    %movi 8, 3, 32;
+    %set/v v0x16a7d90_0, 8, 32;
+    %movi 8, 7, 32;
+    %set/v v0x16a7cc0_0, 8, 32;
+    %end;
+    .thread T_3;
+    .scope S_0x168c140;
+T_4 ;
+    %vpi_call 2 24 "$monitor", "Rw = %d busW = %d regwr = %b", v0x16a80d0_0, v0x16a7b70_0, v0x16a7f30_0;
+    %delay 2, 0;
+    %delay 2, 0;
+    %set/v v0x16a8000_0, 1, 1;
+    %movi 8, 1, 5;
+    %set/v v0x16a81f0_0, 8, 5;
+    %delay 2, 0;
+    %movi 8, 2, 5;
+    %set/v v0x16a81f0_0, 8, 5;
+    %set/v v0x16a7e60_0, 1, 1;
+    %delay 2, 0;
+    %set/v v0x16a8000_0, 0, 1;
+    %movi 8, 3, 5;
+    %set/v v0x16a81f0_0, 8, 5;
+    %vpi_call 2 32 "$finish";
+    %end;
+    .thread T_4;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "tests/write_test.v";
+    "write.v";
+    "alu/2to1_mux_n.v";
