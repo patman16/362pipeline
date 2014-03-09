@@ -8,7 +8,7 @@ module testbench;
 	wire [3:0] aluctrl;
 	wire [1:0] fpoint, dsize;
 	
-	RegDecode decodereg (clk, instruction, delay, delay2, rw, busW, wrenable, delayout, delay2out, imm32, busA, busB, regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, aluctrl, fpoint, rd, rs2, dsize, loadext, jal, jar);
+	RegDecode decodereg (clk, instruction, delay, delay2, rw, busW, wrenable, delayout, delay2out, imm16, busA, busB, regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, aluctrl, fpoint, rd, rs2, dsize, loadext, jal, jar);
 	
 	always #1 clk = ~clk;
 	
