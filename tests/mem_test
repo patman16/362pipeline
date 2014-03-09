@@ -1,0 +1,176 @@
+#! /home/gho705/opt/iverilog/bin/vvp
+:ivl_version "0.9.5 " "(v0_9_5)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0xa09da0 .scope module, "mem_unit" "mem_unit" 2 42;
+ .timescale 0 0;
+S_0xa09e90 .scope module, "testbench" "testbench" 3 1;
+ .timescale 0 0;
+v0xa27050_0 .var "clock", 0 0;
+v0xa270d0_0 .var "dALUOUT", 31 0;
+v0xa27180_0 .var "dALUSRC", 0 0;
+v0xa27230_0 .var "dBRANCH", 0 0;
+v0xa272e0_0 .var "dDSIZE", 1 0;
+v0xa27390_0 .var "dEXTOP", 0 0;
+v0xa27410_0 .var "dMEMTOREG", 0 0;
+v0xa274c0_0 .var "dMEMWR", 0 0;
+v0xa27570_0 .var "dREGDST", 0 0;
+v0xa27620_0 .var "dREGWR", 0 0;
+v0xa276d0_0 .var "dZERO", 0 0;
+v0xa27780_0 .net "qALUOUT", 31 0, v0xa269d0_0; 1 drivers
+v0xa27830_0 .net "qALUSRC", 0 0, v0xa268c0_0; 1 drivers
+v0xa278e0_0 .net "qBRANCH", 0 0, v0xa26a70_0; 1 drivers
+v0xa27a10_0 .net "qDSIZE", 1 0, v0xa26b90_0; 1 drivers
+v0xa27ac0_0 .net "qEXTOP", 0 0, v0xa26c30_0; 1 drivers
+v0xa27960_0 .net "qMEMTOREG", 0 0, v0xa26d80_0; 1 drivers
+v0xa27c30_0 .net "qMEMWR", 0 0, v0xa26af0_0; 1 drivers
+v0xa27d50_0 .net "qREGDST", 0 0, v0xa26ea0_0; 1 drivers
+v0xa27dd0_0 .net "qREGWR", 0 0, v0xa26f20_0; 1 drivers
+v0xa27cb0_0 .net "qZERO", 0 0, v0xa26e00_0; 1 drivers
+S_0xa0a0b0 .scope module, "REGISTER" "MEMRegister" 3 9, 2 1, S_0xa09e90;
+ .timescale 0 0;
+v0xa0a1a0_0 .net "clk", 0 0, v0xa27050_0; 1 drivers
+v0xa26180_0 .net "dALUSrc", 0 0, v0xa27180_0; 1 drivers
+v0xa26220_0 .net "dALUout", 31 0, v0xa270d0_0; 1 drivers
+v0xa262c0_0 .net "dBranch", 0 0, v0xa27230_0; 1 drivers
+v0xa26370_0 .net "dDsize", 1 0, v0xa272e0_0; 1 drivers
+v0xa26410_0 .net "dExtOp", 0 0, v0xa27390_0; 1 drivers
+v0xa264f0_0 .net "dMemWr", 0 0, v0xa274c0_0; 1 drivers
+v0xa26590_0 .net "dMemtoReg", 0 0, v0xa27410_0; 1 drivers
+v0xa26680_0 .net "dRegDst", 0 0, v0xa27570_0; 1 drivers
+v0xa26720_0 .net "dRegWr", 0 0, v0xa27620_0; 1 drivers
+v0xa26820_0 .net "dZero", 0 0, v0xa276d0_0; 1 drivers
+v0xa268c0_0 .var "qALUSrc", 0 0;
+v0xa269d0_0 .var "qALUout", 31 0;
+v0xa26a70_0 .var "qBranch", 0 0;
+v0xa26b90_0 .var "qDsize", 1 0;
+v0xa26c30_0 .var "qExtOp", 0 0;
+v0xa26af0_0 .var "qMemWr", 0 0;
+v0xa26d80_0 .var "qMemtoReg", 0 0;
+v0xa26ea0_0 .var "qRegDst", 0 0;
+v0xa26f20_0 .var "qRegWr", 0 0;
+v0xa26e00_0 .var "qZero", 0 0;
+E_0xa0c1f0 .event posedge, v0xa0a1a0_0;
+    .scope S_0xa0a0b0;
+T_0 ;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0xa26c30_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0xa268c0_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0xa26ea0_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0xa26af0_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0xa26a70_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0xa26d80_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0xa26f20_0, 0, 0;
+    %ix/load 0, 2, 0;
+    %assign/v0 v0xa26b90_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0xa26e00_0, 0, 0;
+    %ix/load 0, 32, 0;
+    %assign/v0 v0xa269d0_0, 0, 0;
+    %end;
+    .thread T_0;
+    .scope S_0xa0a0b0;
+T_1 ;
+    %wait E_0xa0c1f0;
+    %load/v 8, v0xa26410_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0xa26c30_0, 0, 8;
+    %load/v 8, v0xa26180_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0xa268c0_0, 0, 8;
+    %load/v 8, v0xa26680_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0xa26ea0_0, 0, 8;
+    %load/v 8, v0xa264f0_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0xa26af0_0, 0, 8;
+    %load/v 8, v0xa262c0_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0xa26a70_0, 0, 8;
+    %load/v 8, v0xa26590_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0xa26d80_0, 0, 8;
+    %load/v 8, v0xa26720_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0xa26f20_0, 0, 8;
+    %load/v 8, v0xa26370_0, 2;
+    %ix/load 0, 2, 0;
+    %assign/v0 v0xa26b90_0, 0, 8;
+    %load/v 8, v0xa26820_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0xa26e00_0, 0, 8;
+    %load/v 8, v0xa26220_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v0xa269d0_0, 0, 8;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0xa09e90;
+T_2 ;
+    %delay 1, 0;
+    %load/v 8, v0xa27050_0, 1;
+    %inv 8, 1;
+    %set/v v0xa27050_0, 8, 1;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0xa09e90;
+T_3 ;
+    %set/v v0xa27050_0, 1, 1;
+    %set/v v0xa27390_0, 0, 1;
+    %set/v v0xa27180_0, 1, 1;
+    %set/v v0xa27570_0, 1, 1;
+    %set/v v0xa274c0_0, 0, 1;
+    %set/v v0xa27230_0, 0, 1;
+    %set/v v0xa27410_0, 1, 1;
+    %set/v v0xa27620_0, 0, 1;
+    %set/v v0xa276d0_0, 1, 1;
+    %movi 8, 1, 2;
+    %set/v v0xa272e0_0, 8, 2;
+    %movi 8, 8, 32;
+    %set/v v0xa270d0_0, 8, 32;
+    %end;
+    .thread T_3;
+    .scope S_0xa09e90;
+T_4 ;
+    %vpi_call 3 29 "$monitor", "clock = %b dEXTOP = %b dALUSRC = %b dREGDST = %b dMEMWR = %b dBRANCH = %b dMEMTOREG = %b dREGWR = %b dZERO = %b dDSIZE = %b dALUOUT = %d qEXTOP = %b qALUSRC = %b qREGDST = %b qMEMWR = %b qBRANCH = %b qMEMTOREG = %b qREGWR = %b qZERO = %b qDSIZE = %b qALUOUT = %d", v0xa27050_0, v0xa27390_0, v0xa27180_0, v0xa27570_0, v0xa274c0_0, v0xa27230_0, v0xa27410_0, v0xa27620_0, v0xa276d0_0, v0xa272e0_0, v0xa270d0_0, v0xa27ac0_0, v0xa27830_0, v0xa27d50_0, v0xa27c30_0, v0xa278e0_0, v0xa27960_0, v0xa27dd0_0, v0xa27cb0_0, v0xa27a10_0, v0xa27780_0;
+    %delay 1, 0;
+    %set/v v0xa27390_0, 1, 1;
+    %set/v v0xa27180_0, 0, 1;
+    %set/v v0xa27570_0, 0, 1;
+    %set/v v0xa274c0_0, 1, 1;
+    %set/v v0xa27230_0, 1, 1;
+    %set/v v0xa27410_0, 0, 1;
+    %set/v v0xa27620_0, 1, 1;
+    %set/v v0xa276d0_0, 0, 1;
+    %set/v v0xa272e0_0, 0, 2;
+    %movi 8, 9, 32;
+    %set/v v0xa270d0_0, 8, 32;
+    %delay 1, 0;
+    %set/v v0xa27390_0, 0, 1;
+    %set/v v0xa27180_0, 1, 1;
+    %set/v v0xa27570_0, 1, 1;
+    %set/v v0xa274c0_0, 0, 1;
+    %set/v v0xa27230_0, 0, 1;
+    %set/v v0xa27410_0, 1, 1;
+    %set/v v0xa27620_0, 0, 1;
+    %set/v v0xa276d0_0, 1, 1;
+    %movi 8, 1, 2;
+    %set/v v0xa272e0_0, 8, 2;
+    %movi 8, 8, 32;
+    %set/v v0xa270d0_0, 8, 32;
+    %vpi_call 3 33 "$finish";
+    %end;
+    .thread T_4;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "mem_unit.v";
+    "tests/mem_unit_test.v";
