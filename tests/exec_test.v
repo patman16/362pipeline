@@ -6,7 +6,7 @@ module EXEC_test;
 	reg [3:0] dAluCtrl;
 	reg [1:0] dFPoint, dDsize;
 
-	wire ALUSrc, MemWr, Branch, MemtoReg, RegWr, Zero, Jump, Loadext, Jal, Jar;
+	wire MemWr, Branch, MemtoReg, RegWr, Zero, Jump, Loadext, Jal, Jar;
 	wire [1:0] FPoint, Dsize;
 	wire [31:0] BusB, BranchTarget, ALUout;	
 	wire [4:0] Rw;
@@ -18,12 +18,12 @@ module EXEC_test;
 	initial begin
 		clk = 1;
 		dRegDst = 0; 
-		dALUSrc = 1; 
+		dALUSrc = 0; 
 		dMemToReg = 0; 
-		dRegWrite = 1; 
+		dRegWrite = 0; 
 		dMemWr = 0;
 		dBranch = 0;
-		dJump = 1;
+		dJump = 0;
 		dAluCtrl = 0;
 		dFPoint = 0;
 		dDsize = 0;				
@@ -35,12 +35,12 @@ module EXEC_test;
 		dBusB = 0;
 		dRd = 0;
 		dRt = 0;
-		dNextAddress = 0;
+		dNextAddress = 32'h00620820;
 		
 	end
 	
 	initial begin
-	$monitor("clk = %b, dRegDst = %b, dALUSrc = %b, dMemToReg = %b, dRegWrite = %b, dMemWr = %b, dBranch = %b, dJump = %b, BranchTarget = %h", clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dBranch, dJump, BranchTarget);
+	$monitor("clk = %b, dRegDst = %b, dALUSrc = %b, dMemToReg = %b, dRegWrite = %b, dMemWr = %b, dBranch = %b, dJump = %b, BranchTarget = %h, ALUout = %h, Rw = %d", clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dBranch, dJump, BranchTarget, ALUout, Rw);
 	
 	#2
 	#2  dRegDst = 1; 
@@ -50,6 +50,8 @@ module EXEC_test;
 	    dMemWr = 1;
 	    dBranch = 1;
 	    dJump = 0;
+	    dBusB = 32'h00620820;
+	    dNextAddress = 32'h00620824;
 	#2 
 	    dRegDst = 0; 
 	    dALUSrc = 0; 
@@ -58,6 +60,8 @@ module EXEC_test;
 	    dMemWr = 0;
 	    dBranch = 0;
 	    dJump = 0;
+            dBusB = 32'h00620824;
+  	    dNextAddress = 32'h00620828;
 	
 	$finish;
 	end
