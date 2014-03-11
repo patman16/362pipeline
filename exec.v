@@ -1,21 +1,21 @@
-module EXRegister(clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dBranch, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dJar, dImm32, dBusA, dBusB, dRd, dRt, dNextAddress, qRegDst, qALUSrc, qMemToReg, qRegWrite, qMemWr, qBranch, qJump, qAluCtrl, qFPoint, qDsize, qLoadext, qJal, qJar, qImm32, qBusA, qBusB, qRd, qRt, qNextAddress);
+module EXRegister(clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dBranch, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dImm32, dBusA, dBusB, dRd, dRt, dDelayslot, dDelayslot2, qRegDst, qALUSrc, qMemToReg, qRegWrite, qMemWr, qBranch, qJump, qAluCtrl, qFPoint, qDsize, qLoadext, qJal, qImm32, qBusA, qBusB, qRd, qRt, qDelayslot, qDelayslot2);
 
 	input clk;
-	input dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dBranch, dJump, dLoadext, dJal, dJar;
-	input [31:0] dBusA, dBusB, dNextAddress, dImm32;
+	input dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dBranch, dJump, dLoadext, dJal;
+	input [31:0] dBusA, dBusB, dDelayslot, dDelayslot2, dImm32;
 	input [4:0] dRd, dRt;
 	input [3:0] dAluCtrl;
 	input [1:0] dFPoint, dDsize;
 
-	output qRegDst, qALUSrc, qMemToReg, qRegWrite, qMemWr, qBranch, qJump, qJal, qJar, qLoadext;
-	output [31:0] qBusA, qBusB, qNextAddress, qImm32;
+	output qRegDst, qALUSrc, qMemToReg, qRegWrite, qMemWr, qBranch, qJump, qJal, qLoadext;
+	output [31:0] qBusA, qBusB, qDelayslot, qDelayslot2, qImm32;
 	output [4:0] qRd, qRt;
 	output [3:0] qAluCtrl;
 	output [1:0] qFPoint, qDsize;
 
-	reg qRegDst, qALUSrc, qMemToReg, qRegWrite, qMemWr, qBranch, qJump, qJal, qJar, qLoadext;
+	reg qRegDst, qALUSrc, qMemToReg, qRegWrite, qMemWr, qBranch, qJump, qJal, qLoadext;
 	reg [4:0] qRd, qRt;
-	reg [31:0] qBusA, qBusB, qNextAddress, qImm32;
+	reg [31:0] qBusA, qBusB, qDelayslot, qDelayslot2, qImm32;
 	reg [3:0] qAluCtrl;
 	reg [1:0] qFPoint, qDsize;
 
@@ -33,13 +33,13 @@ module EXRegister(clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dBranch, 
 		qDsize <= 0;				
 		qLoadext <= 0;
 		qJal <= 0;
-		qJar <= 0;
 		qImm32 <= 0;
 		qBusA <= 0;
 		qBusB <= 0;
 		qRd <= 0;
 		qRt <= 0;
-		qNextAddress <= 0;
+		qDelayslot <= 0;
+		qDelayslot2 <= 0;
 	end
 
 	//Inputs = Outputs 
@@ -57,30 +57,30 @@ module EXRegister(clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dBranch, 
 		qDsize <= dDsize;				
 		qLoadext <= dLoadext;
 		qJal <= dJal;
-		qJar <= dJar;
 		qImm32 <= dImm32;
 		qBusA <= dBusA;
 		qBusB <= dBusB;
 		qRd <= dRd;
 		qRt <= dRt;
-		qNextAddress <= dNextAddress;
+		qDelayslot <= dDelayslot;
+		qDelayslot2 <= dDelayslot2;
 	end
 
 
 endmodule
 
 
-module exec(clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dBranch, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dJar, dImm32, dBusA, dBusB, dRd, dRt, dNextAddress, MemWr, Branch, MemtoReg, RegWr, Dsize, Zero, ALUout, Rw, Jump, FPoint, Loadext, Jal, BusB, BranchTarget);
+module exec(clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dBranch, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dImm32, dBusA, dBusB, dRd, dRt, dDelayslot, dDelayslot2, MemWr, Branch, MemtoReg, RegWr, Dsize, Zero, ALUout, Rw, Jump, FPoint, Loadext, Jal, BusB, BranchTarget, Delayslot2);
 
 	input clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dBranch, dJump, dJal, dJar, dLoadext;
 	input [4:0] dRd, dRt;
-	input [31:0] dBusA, dBusB, dNextAddress, dImm32;
+	input [31:0] dBusA, dBusB, dDelayslot, dDelayslot2, dImm32;
 	input [3:0] dAluCtrl;
 	input [1:0] dFPoint, dDsize;
 
 	output MemWr, Branch, MemtoReg, RegWr, Zero, Jump, Loadext, Jal, Jar;
 	output [1:0] FPoint, Dsize;
-	output [31:0] BusB, BranchTarget, ALUout;
+	output [31:0] BusB, BranchTarget, ALUout, Delayslot2;
 	output [4:0] Rw;
 
 	wire [31:0] mux0_out, temp; //, output of mux, imm32 shifted	
@@ -92,7 +92,7 @@ module exec(clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dBranch, dJump,
 	
 
 	//Pipeline Register
-	EXRegister register (clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dBranch, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dJar, dImm32, dBusA, dBusB, dRd, dRt, dNextAddress, RegDst, ALUSrc, MemToReg, RegWrite, MemWr, Branch, Jump, AluCtrl, FPoint, Dsize, Loadext, Jal, Jar, Imm32, BusA, BusB_inside, Rd, Rt, NextAddress);	
+	EXRegister register (clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dBranch, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dImm32, dBusA, dBusB, dRd, dRt, dDelayslot, dDelayslot2, RegDst, ALUSrc, MemToReg, RegWrite, MemWr, Branch, Jump, AluCtrl, FPoint, Dsize, Loadext, Jal, Jar, Imm32, BusA, BusB_inside, Rd, Rt, NextAddress, Delayslot2);	
 	
 	//Execution part of the single cycle
     	mux_2to1_n #(.n(32)) MUX0(BusB_inside, Imm32, ALUSrc, mux0_out);

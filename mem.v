@@ -1,18 +1,18 @@
-module MEMRegister(clk, dMemWr, dBranch, dMemtoReg, dRegWr, dDsize, dZero, dExecResult, dBusB, dloadext, dJump, dJal, dJar, dFPoint, dRw, dBranchTarget, qMemWr, qBranch, qMemtoReg, qRegWr, qDsize, qZero, qExecResult, qBusB, qloadext, qJump, qJal, qJar, qFPoint, qRw, qBranchTarget);
-	input clk, dMemWr, dBranch, dMemtoReg, dRegWr, dZero, dloadext, dJump, dJal, dJar;
+module MEMRegister(clk, dMemWr, dBranch, dMemtoReg, dRegWr, dDsize, dZero, dExecResult, dBusB, dloadext, dJump, dJal, dFPoint, dRw, dBranchTarget, dDelayslot2, qMemWr, qBranch, qMemtoReg, qRegWr, qDsize, qZero, qExecResult, qBusB, qloadext, qJump, qJal, qFPoint, qRw, qBranchTarget, qDelayslot2);
+	input clk, dMemWr, dBranch, dMemtoReg, dRegWr, dZero, dloadext, dJump, dJal;
 	input [1:0] dDsize, dFPoint;
 	input [4:0] dRw;
-	input [31:0] dExecResult, dBusB, dBranchTarget;
+	input [31:0] dExecResult, dBusB, dBranchTarget, dDelayslot2;
 	
-	output qMemWr, qBranch, qMemtoReg, qRegWr, qZero, qloadext, qJump, qJal, qJar;
+	output qMemWr, qBranch, qMemtoReg, qRegWr, qZero, qloadext, qJump, qJal;
 	output [1:0] qDsize, qFPoint;
 	output [4:0] qRw;
-	output [31:0] qExecResult, qBusB, qBranchTarget;
+	output [31:0] qExecResult, qBusB, qBranchTarget, qDelayslot2;
 	
-	reg qMemWr, qBranch, qMemtoReg, qRegWr, qZero, qloadext, qJump, qJal, qJar;
+	reg qMemWr, qBranch, qMemtoReg, qRegWr, qZero, qloadext, qJump, qJal;
 	reg [1:0] qDsize, qFPoint;
 	reg [4:0] qRw;
-	reg [31:0] qExecResult, qBusB, qBranchTarget;
+	reg [31:0] qExecResult, qBusB, qBranchTarget, qDelayslot2;
 	
 
 	initial begin
@@ -24,13 +24,13 @@ module MEMRegister(clk, dMemWr, dBranch, dMemtoReg, dRegWr, dDsize, dZero, dExec
 		qloadext <= 0;
 		qJump <=0;
 		qJal <= 0;
-		qJar <= 0;
 		qDsize <= 0;
 		qFPoint <= 0;
 		qRw <= 0;
 		qExecResult <= 0;
 		qBusB <= 0;
 		qBranchTarget <= 0;
+		qDelayslot2 <= 0;
 			
 	end
 
@@ -44,26 +44,26 @@ module MEMRegister(clk, dMemWr, dBranch, dMemtoReg, dRegWr, dDsize, dZero, dExec
 		qloadext <= dloadext;
 		qJump <=dJump;
 		qJal <= dJal;
-		qJar <= dJar;
 		qDsize <= dDsize;
 		qFPoint <= dFPoint;
 		qRw <= dRw;
 		qExecResult <= dExecResult;
 		qBusB <= dBusB;
 		qBranchTarget <= dBranchTarget;
+		qDelayslot2 <= dDelayslot2;
 	end
 endmodule
 
-module mem_unit(clk, dMemWr, dBranch, dMemtoReg, dRegWr, dDsize, dZero, dExecResult, dBusB, dloadext, dJump, dJal, dJar, dFPoint, dRw, dBranchTarget, memtoreg_out, regWr_out, dmem_out, execResult_out, jump_out, fPoint_out, jal_out, jar_out, rw_out, PCSrc_out, BranchTarget_out, BusB_out);
+module mem_unit(clk, dMemWr, dBranch, dMemtoReg, dRegWr, dDsize, dZero, dExecResult, dBusB, dloadext, dJump, dJal, dFPoint, dRw, dBranchTarget, dDelayslot2, memtoreg_out, regWr_out, dmem_out, execResult_out, jump_out, fPoint_out, jal_out, rw_out, PCSrc_out, BranchTarget_out, Delayslot2_out);
 
-	input clk, dMemWr, dBranch, dMemtoReg, dRegWr, dZero, dloadext, dJump, dJal, dJar;
+	input clk, dMemWr, dBranch, dMemtoReg, dRegWr, dZero, dloadext, dJump, dJal;
 	input [1:0] dDsize, dFPoint;
 	input [4:0] dRw;
-	input [31:0] dExecResult, dBusB, dBranchTarget;
+	input [31:0] dExecResult, dBusB, dBranchTarget, dDelayslot2;
 	
 	//Outputs that were just being passed through
-	output memtoreg_out, regWr_out, jump_out, jal_out, jar_out;
-	output [31:0] execResult_out, BranchTarget_out, BusB_out;
+	output memtoreg_out, regWr_out, jump_out, jal_out;
+	output [31:0] execResult_out, BranchTarget_out, Delayslot2_out;
 	output [1:0] fPoint_out;
 	output [4:0] rw_out;
 
@@ -80,7 +80,7 @@ module mem_unit(clk, dMemWr, dBranch, dMemtoReg, dRegWr, dDsize, dZero, dExecRes
 	wire [31:0] rData, datamem_muxin, datamem_muxout, mux2_in0, mux2_in1, mux3_in1, mux3_in0;
 
 	//Pipeline Register
-	MEMRegister mRegister(clk, dMemWr, dBranch, dMemtoReg, dRegWr, dDsize, dZero, dExecResult, dBusB, dloadext, dJump, dJal, dJar, dFPoint, dRw, dBranchTarget, MemWr, Branch, memtoreg_out, regWr_out, Dsize, Zero, ExecResult, BusB, loadext, jump_out, jal_out, jar_out, fPoint_out, rw_out, BranchTarget_out);
+	MEMRegister mRegister(clk, dMemWr, dBranch, dMemtoReg, dRegWr, dDsize, dZero, dExecResult, dBusB, dloadext, dJump, dJal, dFPoint, dRw, dBranchTarget, dDelayslot2, MemWr, Branch, memtoreg_out, regWr_out, Dsize, Zero, ExecResult, BusB, loadext, jump_out, jal_out, fPoint_out, rw_out, BranchTarget_out, Delayslot2_out);
 
 	//Actual Memory Stage
 	dmem #(.SIZE(16384)) DMEM(ExecResult, rData, datamem_muxin, MemWr, Dsize, clk);
@@ -94,8 +94,7 @@ module mem_unit(clk, dMemWr, dBranch, dMemtoReg, dRegWr, dDsize, dZero, dExecRes
 	
 	//Calculating 
 	and (PCSrc_out, Branch, Zero);
-	
-	assign BusB_out = BusB;
+
 	assign execResult_out = ExecResult;
 	
 
