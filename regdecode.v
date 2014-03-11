@@ -30,13 +30,20 @@ module RegDecode(clk, instructionin, delayin, delay2in, rw, busW, wrenable, fpoi
 	output [3:0] aluctrl;
 	output [1:0] fpointout, dsize;
 	
-	wire extop;
+	wire extop, open1, busesequal, branchwire;
 	wire [4:0] rs1;
-	wire [31:0] instruction;
+	wire [31:0] instruction, immediateval, busAwire, busBwire;
 	
+	adder_32 #(.N(32)) adder0_map ({immediateval[29:0], 2'b00}, delayin, 1'b0, , open1);
+	equal compare (busAwire, busBwire, busesequal);
+	and (branch, busesequal, branchwire); 
 	IDRegister register (clk, instructionin, delayin, delay2in, instruction, delayout, delay2out);
-	control decoder (instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, aluctrl, extop, fpointout, rd, rs1, rs2, dsize, loadext, jal, jar);
-	registers regfile (clk, wrenable, fpoint, rw, rs1, rs2, busW, busA, busB);
-	extender immed (instruction[15:0], extop, imm32);
+	control decoder (instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branchwire, jump, aluctrl, extop, fpointout, rd, rs1, rs2, dsize, loadext, jal, jar);
+	registers regfile (clk, wrenable, fpoint, rw, rs1, rs2, busW, busAwire, busBwire);
+	extender immed (instruction[15:0], extop, immediateval);
+	
+	assign imm32 = immediateval;
+	assign busA = busAwire;
+	assign busB = busBwire;
 	
 endmodule
