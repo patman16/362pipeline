@@ -34,7 +34,7 @@ module RegDecode(clk, instructionin, delayin, delay2in, rw, busW, wrenable, fpoi
 	wire [4:0] rs1;
 	wire [31:0] instruction, immediateval, busAwire, busBwire;
 	
-	adder_32 #(.N(32)) adder0_map ({immediateval[29:0], 2'b00}, delayin, 1'b0, , open1);
+	adder_32 #(.N(32)) adder0_map ({immediateval[29:0], 2'b00}, delayin, 1'b0, delayout, open1);
 	equal compare (busAwire, busBwire, busesequal);
 	and (branch, busesequal, branchwire); 
 	IDRegister register (clk, instructionin, delayin, delay2in, instruction, delayout, delay2out);
