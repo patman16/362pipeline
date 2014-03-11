@@ -1,5 +1,5 @@
 IVERILOG = /vol/eecs362/iverilog/bin/iverilog
-ALUFILES = singlecycle/alu/*.v
+ALUFILES = alu/*.v
 SINGLECYCLEFILES = singlecycle/*.v
 
 regdecode_test: ; ${IVERILOG} singlecycle/extender.v singlecycle/control.v singlecycle/registers.v regdecode.v tests/regdecode_test.v -o tests/regdecode_test

@@ -92,7 +92,7 @@ module exec(clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dBranch, dJump,
 	
 
 	//Pipeline Register
-	EXRegister register (clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dBranch, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dImm32, dBusA, dBusB, dRd, dRt, dDelayslot, dDelayslot2, RegDst, ALUSrc, MemToReg, RegWrite, MemWr, Branch, Jump, AluCtrl, FPoint, Dsize, Loadext, Jal, Jar, Imm32, BusA, BusB_inside, Rd, Rt, NextAddress, Delayslot2);	
+	EXRegister register (clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dBranch, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dImm32, dBusA, dBusB, dRd, dRt, dDelayslot, dDelayslot2, RegDst, ALUSrc, MemToReg, RegWrite, MemWr, Branch, Jump, AluCtrl, FPoint, Dsize, Loadext, Jal, Imm32, BusA, BusB_inside, Rd, Rt, NextAddress, Delayslot2);	
 	
 	//Execution part of the single cycle
     	mux_2to1_n #(.n(32)) MUX0(BusB_inside, Imm32, ALUSrc, mux0_out);
