@@ -6,4 +6,4 @@ regdecode_test: ; ${IVERILOG} singlecycle/extender.v singlecycle/control.v singl
 write_test: ; ${IVERILOG} singlecycle/alu/2to1_mux_n.v write.v tests/write_test.v -o tests/write_test
 exec_test: ;  ${IVERILOG} ${ALUFILES} singlecycle/alu.v  exec.v tests/exec_test.v -o tests/exec_test
 mem_test: ;  ${IVERILOG} ${ALUFILES}  singlecycle/extender.v singlecycle/4to1_mux_n.v singlecycle/data_mem.v mem.v tests/mem_test.v -o tests/mem_test
-pipeline_test: ; ${IVERILOG} ${ALUFILES} ${SINGLECYCLEFILES} regdecode.v write.v exec.v mem.v
+pipeline_test: ; ${IVERILOG} ${ALUFILES} ${SINGLECYCLEFILES} regdecode.v write.v exec.v mem.v tests/pipeline_test.v -o tests/pipeline_test
