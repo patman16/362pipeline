@@ -17,8 +17,8 @@ end
 integer i;
 initial begin
   // Clear DMEM
-   for (i = 0; i < top.DMEM.SIZE; i = i+1)
-      top.DMEM.mem[i] = 8'h0;
+   for (i = 0; i < top.mem.DMEM.SIZE; i = i+1)
+      top.mem.DMEM.mem[i] = 8'h0;
 
   //Load IMEM from file
    if (!$value$plusargs("instrfile=%s", filename)) begin
@@ -29,9 +29,10 @@ initial begin
   if (!$value$plusargs("datafile=%s", filename)) begin
       filename = "data_unsignedsum.hex";
   end
-  $readmemh(filename, top.DMEM.mem);
+  $readmemh(filename, top.mem.DMEM.mem);
 
-  $monitor("Instruction = %h PC =  %h Target = %h", top.IFU.instruction, top.IFU.pcout, top.IFU.mux2);  
+  $monitor("Instruction = %h PC =  %h Target = %h Branch = %b Branch Target = %h Jump = %b Jar = %b busA = %d, busB = %d", top.IFU.instruction, top.IFU.pcout, top.IFU.mux2, top.branch, top.decode.branchtarget, top.jump_0, top.jar, top.decode.busA, top.decode.busB);  
+
 
    #0 clock=1; reset=0;
    #2 reset=1;

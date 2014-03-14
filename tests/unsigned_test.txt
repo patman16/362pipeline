@@ -1,0 +1,21 @@
+Instruction = 00000026 PC =  00000000 Target = 00000001 Branch = 0 branchsig = 0 branchcond = x Branch Target = xxxxxxxX Jump = 0 Jar = 0 busA =          x, busB =          x
+Instruction = 00842026 PC =  00000001 Target = 00000002 Branch = 0 branchsig = 0 branchcond = 1 Branch Target = 00000028 Jump = 0 Jar = 0 busA =          0, busB =          0
+Instruction = 00a52826 PC =  00000002 Target = 00000003 Branch = 0 branchsig = 0 branchcond = 1 Branch Target = 0000202c Jump = 0 Jar = 0 busA =          0, busB =          0
+Instruction = 00c63026 PC =  00000003 Target = 00000004 Branch = 0 branchsig = 0 branchcond = 1 Branch Target = 00002830 Jump = 0 Jar = 0 busA =          0, busB =          0
+Instruction = 20060024 PC =  00000004 Target = 00000005 Branch = 0 branchsig = 0 branchcond = 1 Branch Target = 00003034 Jump = 0 Jar = 0 busA =          0, busB =          0
+Instruction = 8cc42000 PC =  00000005 Target = 00000006 Branch = 0 branchsig = 0 branchcond = 1 Branch Target = 00000038 Jump = 0 Jar = 0 busA =          0, busB =          0
+Instruction = 00a42821 PC =  00000006 Target = 00000007 Branch = 0 branchsig = 0 branchcond = 0 Branch Target = 00002018 Jump = 0 Jar = 0 busA =          0, busB =          0
+Instruction = 28c60004 PC =  00000007 Target = 00000008 Branch = 0 branchsig = 0 branchcond = 1 Branch Target = 0000283c Jump = 0 Jar = 0 busA =          0, busB =          0
+Instruction = 14c0fff0 PC =  00000008 Target = 00000009 Branch = 0 branchsig = 0 branchcond = 1 Branch Target = 00000024 Jump = 0 Jar = 0 busA =          0, busB =          0
+Instruction = ac062000 PC =  00000009 Target = 0000000a Branch = 0 branchsig = 1 branchcond = 0 Branch Target = 00000014 Jump = 0 Jar = 0 busA =          0, busB =          0
+Mem[       8192] =         15
+Mem[       8196] =        240
+Mem[       8200] =       3840
+Mem[       8204] =      61440
+Mem[       8208] =     983040
+Mem[       8212] =   15728640
+Mem[       8216] =  251658240
+Mem[       8220] =  268435456
+Mem[       8224] =  536870912
+Mem[       8228] = 3221225472
+Instruction = 44000300 PC =  0000000a Target = 0000000b Branch = 0 branchsig = 0 branchcond = 0 Branch Target = 00002028 Jump = 0 Jar = 0 busA =          0, busB =          0
