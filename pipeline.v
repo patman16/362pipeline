@@ -22,6 +22,7 @@ module pipeline(clock, reset);
 	
 	always @ (posedge clock)
 	begin
+		stall = 0;
 		if (fwdA == 2'b00)
 		begin
 			if (decode.rs1 == rw_1)

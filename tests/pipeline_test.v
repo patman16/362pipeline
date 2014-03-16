@@ -27,7 +27,7 @@ initial begin
   end
   $readmemh(filename, top.mem.DMEM.mem);
 
-  $monitor("Instruction = %h PC = %h Target = %h Stall = %b fwdA = %b fwdB = %b Branch = %b Branch Target = %h busA = %d, busB = %d Rw = %d busW = %d ALU out = %d Dmem in = %d Dmem out = %d", top.IFU.instruction, top.IFU.pcout, top.IFU.mux2, top.stall, top.fwdA, top.fwdB, top.branch, top.decode.branchtarget, top.decode.busA, top.decode.busB, top.rw_3, top.busW, top.aluout_0, top.mem.datamem_muxin, top.dmemout);  
+  $monitor("Instruction = %h PC = %h Target = %h Stall = %b fwdA = %b fwdB = %b Branch = %b Branch Target = %h busA = %d, busB = %d Rw = %d busW = %d regwr = %b ALU out = %d Dmem in = %d Dmem out = %d memwr = %b mem2reg = %b", top.IFU.instruction, top.IFU.pcout, top.IFU.mux2, top.stall, top.fwdA, top.fwdB, top.branch, top.decode.branchtarget, top.decode.busA, top.decode.busB, top.rw_3, top.busW, top.wrenable, top.aluout_0, top.mem.datamem_muxin, top.dmemout, top.mem.MemWr, top.rgwrite.mem2regout);  
 
    #0 clock=1; reset=0;
    #2 reset=1;

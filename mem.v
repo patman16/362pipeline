@@ -65,7 +65,7 @@ module mem_unit(clk, dMemWr, dMemtoReg, dRegWr, dDsize, dExecResult, dBusB, dloa
 	output[31:0] dmem_out;
 	
 	//Wires coming from Pipeline register
-	wire Memwr, loadext; 
+	wire MemWr, loadext; 
 	wire [1:0] Dsize;
 	wire [31:0] ExecResult, BusB;
 	
