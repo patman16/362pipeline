@@ -1,5 +1,3 @@
-//  Testbench for the very top... the whole dang thing
-
 module pipeline_tb;
 reg clock;
 reg reset;
@@ -7,8 +5,6 @@ reg [8*80-1:0] filename;
 wire [0:31] PC;
 
 pipeline top (.clock(clock),.reset(reset));
-
-//assign PC = {top.IFU.PCReg.out,2'b00};
 
 always begin
    #1 clock = ~clock;
@@ -31,8 +27,7 @@ initial begin
   end
   $readmemh(filename, top.mem.DMEM.mem);
 
-  $monitor("Instruction = %h PC =  %h Target = %h Branch = %b Branch Target = %h Jump = %b Jar = %b busA = %d, busB = %d", top.IFU.instruction, top.IFU.pcout, top.IFU.mux2, top.branch, top.decode.branchtarget, top.jump_0, top.jar, top.decode.busA, top.decode.busB);  
-
+  $monitor("Instruction = %h PC = %h Target = %h Stall = %b fwdA = %b fwdB = %b Branch = %b Branch Target = %h busA = %d, busB = %d Rw = %d busW = %d ALU out = %d Dmem in = %d Dmem out = %d", top.IFU.instruction, top.IFU.pcout, top.IFU.mux2, top.stall, top.fwdA, top.fwdB, top.branch, top.decode.branchtarget, top.decode.busA, top.decode.busB, top.rw_3, top.busW, top.alutout_0, top.mem.datamem_muxin, top.dmemout);  
 
    #0 clock=1; reset=0;
    #2 reset=1;

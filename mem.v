@@ -70,7 +70,7 @@ module mem_unit(clk, dMemWr, dMemtoReg, dRegWr, dDsize, dExecResult, dBusB, dloa
 	wire [31:0] ExecResult, BusB;
 	
 	//New wires created
-	wire [31:0] rData, datamem_muxin, datamem_muxout, mux2_in0, mux2_in1, mux3_in1, mux3_in0;
+	wire [31:0] rData, datamem_muxin, mux2_in0, mux2_in1, mux3_in1, mux3_in0;
 
 	//Pipeline Register
 	MEMRegister mRegister(clk, dMemWr, dMemtoReg, dRegWr, dDsize, dExecResult, dBusB, dloadext, dJump, dJal, dFPoint, dRw, dDelayslot2, MemWr, memtoreg_out, regWr_out, Dsize, ExecResult, BusB, loadext, jump_out, jal_out, fPoint_out, rw_out, Delayslot2_out);
@@ -79,7 +79,7 @@ module mem_unit(clk, dMemWr, dMemtoReg, dRegWr, dDsize, dExecResult, dBusB, dloa
 	dmem #(.SIZE(16384)) DMEM(ExecResult, rData, datamem_muxin, MemWr, Dsize, clk);
 	extender #(.inN(16), .outN(32)) EXT1(rData[15:0],loadext,mux2_in1);
     	extender #(.inN(8), .outN(32)) EXT2(rData[7:0],loadext,mux2_in0); 
-    	mux_4to1_n #(.n(32)) MUX2(mux2_in0, mux2_in1, 32'd0, rData, Dsize, datamem_muxout);
+    	mux_4to1_n #(.n(32)) MUX2(mux2_in0, mux2_in1, 32'd0, rData, Dsize, dmem_out);
 
 	extender #(.inN(16), .outN(32)) EXT3(busB[15:0],1'b0, mux3_in1);
    	extender #(.inN(8), .outN(32)) EXT4(busB [7:0],1'b0, mux3_in0); 
