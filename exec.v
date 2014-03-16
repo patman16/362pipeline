@@ -91,8 +91,8 @@ module exec(clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dAluCtrl
 	//Execution part of the single cycle
     mux_2to1_n #(.n(32)) MUX0(BusB_inside, Imm32, ALUSrc, mux0_out);
 	alu ALU(fwdBusA, mux0_out, AluCtrl, ALUout, open);
-	mux_4to1_n #(.n(32)) MUX1(BusA, priorALUresult, ALUwriteback, 32'b0, aluselectA, fwdBusA); 
-	mux_4to1_n #(.n(32)) MUX2(mux0_out, priorALUresult, ALUwriteback, 32'b0, aluselectB, fwdBusB);
+	mux_4to1_n #(.n(32)) MUX1(BusA, priorALUresult, ALUwriteback, 32'd0, aluselectA, fwdBusA); 
+	mux_4to1_n #(.n(32)) MUX2(mux0_out, priorALUresult, ALUwriteback, 32'd0, aluselectB, fwdBusB);
 	
 	assign BusB = BusB_inside;
 
