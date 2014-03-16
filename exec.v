@@ -66,11 +66,11 @@ endmodule
 
 module exec(clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dImm32, dBusA, dBusB, dRw, dDelayslot2, aluselectA, aluselectB, priorALUresult, ALUwriteback, MemWr, MemtoReg, RegWr, Dsize, ALUout, Rw, Jump, FPoint, Loadext, Jal, BusB, Delayslot2);
 
-	input clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dJal, dJar, dLoadext, aluselectA, aluselectB;
+	input clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dJal, dJar, dLoadext;
 	input [4:0] dRw;
 	input [31:0] dBusA, dBusB, dDelayslot2, dImm32, priorALUresult, ALUwriteback;
 	input [3:0] dAluCtrl;
-	input [1:0] dFPoint, dDsize;
+	input [1:0] dFPoint, dDsize, aluselectA, aluselectB;
 
 	output MemWr, MemtoReg, RegWr, Jump, Loadext, Jal, Jar;
 	output [1:0] FPoint, Dsize;
@@ -86,7 +86,7 @@ module exec(clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dAluCtrl
 	
 
 	//Pipeline Register
-	EXRegister register (clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dImm32, dBusA, dBusB, dRw, dDelayslot2, RegDst, ALUSrc, MemToReg, RegWrite, MemWr, Jump, AluCtrl, FPoint, Dsize, Loadext, Jal, Imm32, BusA, BusB_inside, Rd, Rt, Delayslot2);	
+	EXRegister register (clk, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dImm32, dBusA, dBusB, dRw, dDelayslot2, RegDst, ALUSrc, MemToReg, RegWrite, MemWr, Jump, AluCtrl, FPoint, Dsize, Loadext, Jal, Imm32, BusA, BusB_inside, Rw, Delayslot2);	
 	
 	//Execution part of the single cycle
     mux_2to1_n #(.n(32)) MUX0(BusB_inside, Imm32, ALUSrc, mux0_out);
