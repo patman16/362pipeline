@@ -24,38 +24,32 @@ module pipeline(clock, reset);
 	begin
 		stall = 0;
 		begin
-			if (instruction[5:0] != 21 || (instruction[5:0] != 21 && instruction[31:26] != 0))
+			if (decode.instruction[5:0] != 21 || (decode.instruction[5:0] != 21 && decode.instruction[31:26] != 0))
 			begin
-				if (fwdA == 2'b00)
+				if (decode.rs1 == rw_1)
 				begin
-					if (decode.rs1 == rw_1)
+					if (decode.instruction[31:26] == 32 || decode.instruction[31:26] == 36 || decode.instruction[31:26] == 33 || decode.instruction[31:26] == 15 || decode.instruction[31:26] == 37 || decode.instruction[31:26] == 35)
+						stall = 1;
+					else
+						fwdA = 2'b01;
+				end
+				else if (decode.rs1 == rw_2)
+					fwdA = 2'b10;
+				else
+					fwdA = 2'b00;
+				if (decode.instruction[31:26] == 0 || decode.instruction[31:26] == 1)
+				begin
+					if (decode.rs2 == rw_1)
 					begin
-						if (instruction[31:26] == 32 || instruction[31:26] == 36 || instruction[31:26] == 33 || instruction[31:26] == 15 || instruction[31:26] == 37 || instruction[31:26] == 35)
+						if (decode.instruction[31:26] == 32 || decode.instruction[31:26] == 36 || decode.instruction[31:26] == 33 || decode.instruction[31:26] == 15 || decode.instruction[31:26] == 37 || decode.instruction[31:26] == 35)
 							stall = 1;
 						else
-							fwdA = 2'b01;
+							fwdB = 2'b01;
 					end
-					else if (decode.rs1 == rw_2)
-						fwdA = 2'b10;
+					else if (decode.rs2 == rw_2)
+						fwdB = 2'b10;
 					else
-						fwdA = 2'b00;
-				end
-				if (instruction[31:26] == 0 || instruction[31:26] == 1)
-				begin
-					if (fwdB == 2'b00)
-					begin
-						if (decode.rs2 == rw_1)
-						begin
-							if (instruction[31:26] == 32 || instruction[31:26] == 36 || instruction[31:26] == 33 || instruction[31:26] == 15 || instruction[31:26] == 37 || instruction[31:26] == 35)
-								stall = 1;
-							else
-								fwdB = 2'b01;
-						end
-						else if (decode.rs2 == rw_2)
-							fwdB = 2'b10;
-						else
-							fwdB = 2'b00;
-					end
+						fwdB = 2'b00;
 				end
 			end
 		end
