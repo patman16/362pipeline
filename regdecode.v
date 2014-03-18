@@ -66,7 +66,7 @@ module RegDecode(clk, stall, squash, instructionin, delayin, delay2in, rw, busW,
 	if (rw == rs2)
 		busBreg = busW;
 	else
-		busBreg = busAwire;
+		busBreg = busBwire;
 	end
 	
 	assign imm32 = immediateval;

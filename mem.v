@@ -48,7 +48,7 @@ module MEMRegister(clk, dMemWr, dMemtoReg, dRegWr, dDsize, dExecResult, dBusB, d
 	end
 endmodule
 
-module mem_unit(clk, dMemWr, dMemtoReg, dRegWr, dDsize, dExecResult, dBusB, dloadext, dJump, dJal, dFPoint, dRw, dDelayslot2, memtoreg_out, regWr_out, dmem_out, execResult_out, jump_out, fPoint_out, jal_out, rw_out, Delayslot2_out);
+module mem_unit(clk, dMemWr, dMemtoReg, dRegWr, dDsize, dExecResult, dBusB, dloadext, dJump, dJal, dFPoint, dRw, dDelayslot2, regWr_out, source_out, jump_out, fPoint_out, jal_out, rw_out, Delayslot2_out);
 
 	input clk, dMemWr, dMemtoReg, dRegWr, dloadext, dJump, dJal;
 	input [1:0] dDsize, dFPoint;
@@ -56,21 +56,21 @@ module mem_unit(clk, dMemWr, dMemtoReg, dRegWr, dDsize, dExecResult, dBusB, dloa
 	input [31:0] dExecResult, dBusB, dDelayslot2;
 	
 	//Outputs that were just being passed through
-	output memtoreg_out, regWr_out, jump_out, jal_out;
-	output [31:0] execResult_out, Delayslot2_out;
+	output regWr_out, jump_out, jal_out;
+	output [31:0] Delayslot2_out;
 	output [1:0] fPoint_out;
 	output [4:0] rw_out;
 
-	//New outputs created
-	output[31:0] dmem_out;
-	
+	//New outputs
+	output [31:0] source_out;
+
 	//Wires coming from Pipeline register
-	wire MemWr, loadext; 
+	wire MemWr, loadext, memtoreg_out; 
 	wire [1:0] Dsize;
 	wire [31:0] ExecResult, BusB;
 	
 	//New wires created
-	wire [31:0] rData, datamem_muxin, mux2_in0, mux2_in1, mux3_in1, mux3_in0;
+	wire [31:0] rData, datamem_muxin, mux2_in0, mux2_in1, mux3_in1, mux3_in0, dmem_out;
 
 	//Pipeline Register
 	MEMRegister mRegister(clk, dMemWr, dMemtoReg, dRegWr, dDsize, dExecResult, dBusB, dloadext, dJump, dJal, dFPoint, dRw, dDelayslot2, MemWr, memtoreg_out, regWr_out, Dsize, ExecResult, BusB, loadext, jump_out, jal_out, fPoint_out, rw_out, Delayslot2_out);
@@ -84,6 +84,7 @@ module mem_unit(clk, dMemWr, dMemtoReg, dRegWr, dDsize, dExecResult, dBusB, dloa
 	extender #(.inN(16), .outN(32)) EXT3(busB[15:0],1'b0, mux3_in1);
    	extender #(.inN(8), .outN(32)) EXT4(busB [7:0],1'b0, mux3_in0); 
    	mux_4to1_n #(.n(32)) MUX3(mux3_in0, mux3_in1, 32'd0, BusB, Dsize, datamem_muxin);
+	mux_2to1_n #(.n(32)) MUX4(ExecResult, dmem_out, memtoreg_out, source_out);
 	
 	//Calculating 
 	assign execResult_out = ExecResult;

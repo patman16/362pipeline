@@ -1,23 +1,21 @@
-module WrRegister(clk, dmem2reg, dregwr, drw, ddmem, dexecresult, dfpoint, ddelayslot2, djal, qmem2reg, qregwr, qrw, qdmem, qexecresult, qfpoint, qdelayslot2, qjal);
-	input clk, dmem2reg, dregwr, djal;
+module WrRegister(clk, dregwr, drw, dbusW, dfpoint, ddelayslot2, djal, qregwr, qrw, qbusW, qfpoint, qdelayslot2, qjal);
+	input clk, dregwr, djal;
 	input [1:0] dfpoint;
 	input [4:0] drw;
-	input [31:0] ddmem, dexecresult, ddelayslot2;
-	output qmem2reg, qregwr, qjal;
+	input [31:0] dbusW, ddelayslot2;
+	output qregwr, qjal;
 	output [1:0] qfpoint;
 	output [4:0] qrw;
-	output [31:0] qdmem, qexecresult, qdelayslot2;
-	reg qmem2reg, qregwr, qjal;
+	output [31:0] qbusW, qdelayslot2;
+	reg qregwr, qjal;
 	reg [1:0] qfpoint;
 	reg [4:0] qrw;
-	reg [31:0] qdmem, qexecresult, qdelayslot2;
+	reg [31:0] qbusW, qdelayslot2;
 	
 	initial begin
-		qmem2reg <= 0;
 		qregwr <= 0;
 		qrw <= 0;
-		qdmem <= 0;
-		qexecresult <= 0;
+		qbusW <= 0;
 		qfpoint <= 0;
 		qdelayslot2 <= 0;
 		qjal <= 0;
@@ -25,11 +23,9 @@ module WrRegister(clk, dmem2reg, dregwr, drw, ddmem, dexecresult, dfpoint, ddela
 	
 	always @ (posedge clk)
 	begin
-		qmem2reg <= dmem2reg;
 		qregwr <= dregwr;
 		qrw <= drw;
-		qdmem <= ddmem;
-		qexecresult <= dexecresult;
+		qbusW <= dbusW;
 		qfpoint <= dfpoint;
 		qdelayslot2 <= ddelayslot2;
 		qjal <= djal;
@@ -37,19 +33,18 @@ module WrRegister(clk, dmem2reg, dregwr, drw, ddmem, dexecresult, dfpoint, ddela
 	
 endmodule
 
-module Write(clk, mem2regin, regwritein, rwin, dmemin, execresultin, fpointin, delayslot2in, jalin, rw, busW, regwr, fpoint);
-	input clk, mem2regin, regwritein, jalin;
+module Write(clk, regwritein, rwin, busWin, fpointin, delayslot2in, jalin, rw, busW, regwr, fpoint);
+	input clk, regwritein, jalin;
 	input [1:0] fpointin;
 	input [4:0] rwin;
-	input [31:0] dmemin, execresultin, delayslot2in;
+	input [31:0] busWin, delayslot2in;
 	output regwr;
 	output [1:0] fpoint;
 	output [4:0] rw;
 	output [31:0] busW;
-	wire mem2regout, jalout;
-	wire [31:0] dmemout, execresultout, delayslot2out, source;
+	wire jalout;
+	wire [31:0] busWout, delayslot2out, source;
 	
-	WrRegister writereg(clk, mem2regin, regwritein, rwin, dmemin, execresultin, fpointin, delayslot2in, jalin, mem2regout, regwr, rw, dmemout, execresultout, fpoint, delayslot2out, jalout);
-	mux_2to1_n #(.n(32)) sourcemux(execresultout, dmemout, mem2regout, source);
-	mux_2to1_n #(.n(32)) jalmux(source, delayslot2out, jalout, busW);
+	WrRegister writereg(clk, regwritein, rwin, busWin, fpointin, delayslot2in, jalin, regwr, rw, busWout, fpoint, delayslot2out, jalout);
+	mux_2to1_n #(.n(32)) jalmux(busWout, delayslot2out, jalout, busW);
 endmodule
