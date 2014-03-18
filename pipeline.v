@@ -9,7 +9,7 @@ module pipeline(clock, reset);
 	reg [1:0] fwdA, fwdB;	
 
 	ifu IFU(branch, jump_0, clock, reset, jar, busA_0[31:2], branchtarget[31:2], instruction_0, delayslot, delayslot2_0, stall);
-	RegDecode decode(clock, stall, instruction_0, delayslot, delayslot2_1, rw_3, busW, wrenable, fpoint_3, branchtarget, delayslot2_1, instruction_1, imm32_0, busA_0, busB_0, aluout_0, aluout_1, fwdA, fwdB, regdst_0, alusrc_0, mem2reg_0, regwrite_0, memwrite_0, branch, jump_0, aluctrl_0, fpoint_0, rw_0, dsize_0, loadext_0, jal_0, jar);
+	RegDecode decode(clock, stall, branch, instruction_0, delayslot, delayslot2_1, rw_3, busW, wrenable, fpoint_3, branchtarget, delayslot2_1, instruction_1, imm32_0, busA_0, busB_0, aluout_0, dmemout, fwdA, fwdB, regdst_0, alusrc_0, mem2reg_0, regwrite_0, memwrite_0, branch, jump_0, aluctrl_0, fpoint_0, rw_0, dsize_0, loadext_0, jal_0, jar);
 	exec execstage(clock, stall, instruction_1, regdst_0, alusrc_0, mem2reg_0, regwrite_0, memwrite_0, jump_0, aluctrl_0, fpoint_0, dsize_0, loadext_0, jal_0, imm32_0, busA_0, busB_0, rw_0, delayslot2_1, memwrite_1, mem2reg_1, regwrite_1, dsize_1, aluout_0, rw_1, jump_1, fpoint_1, loadext_1, jal_1, busB_1, delayslot2_2);
 	mem_unit mem(clock, memwrite_1, mem2reg_1, regwrite_1, dsize_1, aluout_0, busB_1, loadext_1, jump_1, jal_1, fpoint_1, rw_1, delayslot2_2, mem2reg_2, regwrite_2, dmemout, aluout_1, jump_2, fpoint_2, jal_2, rw_2, delayslot2_3);
 	Write rgwrite(clock, mem2reg_2, regwrite_2, rw_2, dmemout, aluout_1, fpoint_2, delayslot2_3, jal_2, rw_3, busW, wrenable, fpoint_3);
@@ -29,15 +29,15 @@ module pipeline(clock, reset);
 	
 	always @*
 	begin
-		fwdA <= 0;
-		fwdB <= 0;
+		//fwdA <= 0;
+		//fwdB <= 0;
 		if (stallack)
 		begin
 			stallack <= 0; stall <= 0; $display("stall stop");
 		end
 		begin
-			if (instruction_1[5:0] != 21 || (instruction_1[5:0] != 21 && instruction_1[31:26] != 0))
-			begin
+			//if (instruction_1[5:0] != 21 || (instruction_1[5:0] != 21 && instruction_1[31:26] != 0))
+			//begin
 				if (instruction_1[25:21] == rw_1)
 				begin
 				$display("ra hazard");
@@ -51,8 +51,8 @@ module pipeline(clock, reset);
 					fwdA <= 2'b10;
 				else
 					fwdA <= 2'b00;
-				if (instruction_1[31:26] == 0 || instruction_1[31:26] == 1)
-				begin
+				//if (instruction_1[31:26] == 0 || instruction_1[31:26] == 1)
+				//begin
 					if (instruction_1[20:16] == rw_1)
 					begin
 					$display("rb hazard");
@@ -66,8 +66,8 @@ module pipeline(clock, reset);
 						fwdB <= 2'b10;
 					else
 						fwdB <= 2'b00;
-				end
-			end
+				//end
+			//end
 		end
 	end	
 endmodule

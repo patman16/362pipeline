@@ -16,7 +16,7 @@ module registers(clk, write, fpoint, rw, rs, rt, busW, busA, busB);
 	input [4:0] rw, rs, rt;
 	input [31:0] busW;
 	output [31:0] busA, busB;
-	
+		
 	reg [31:0] intregs [31:0];
 	reg [31:0] fpregs [31:0];
 	
@@ -36,7 +36,7 @@ module registers(clk, write, fpoint, rw, rs, rt, busW, busA, busB);
 		end
 		end	
 	endgenerate
-	
+
 	always @(posedge clk)
 	begin
 	if (write)
@@ -47,4 +47,5 @@ module registers(clk, write, fpoint, rw, rs, rt, busW, busA, busB);
 		3 : fpregs[rw] <= busW;
 		endcase
 	end
+
 endmodule

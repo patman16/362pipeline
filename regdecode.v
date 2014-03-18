@@ -1,5 +1,5 @@
-module IDRegister(clk, stall, dinst, ddelay, ddelay2, qinst, qdelay, qdelay2);
-	input clk, stall;
+module IDRegister(clk, stall, squash, dinst, ddelay, ddelay2, qinst, qdelay, qdelay2);
+	input clk, stall, squash;
 	input [31:0] dinst, ddelay, ddelay2;
 	output [31:0] qinst, qdelay, qdelay2;
 	reg [31:0] qinst, qdelay, qdelay2;
@@ -18,12 +18,18 @@ module IDRegister(clk, stall, dinst, ddelay, ddelay2, qinst, qdelay, qdelay2);
 			qdelay <= ddelay;
 			qdelay2 <= ddelay2;
 		end
+		if (squash)
+		begin	
+			qinst <= 32'h00000015;
+			qdelay <= 0;
+			qdelay2 <= 0;
+		end
 	end
 	
 endmodule
 
-module RegDecode(clk, stall, instructionin, delayin, delay2in, rw, busW, wrenable, fpoint, branchtarget, delay2out, instruction, imm32, busA, busB, priorALUresult, ALUwriteback, aluselectA, aluselectB, regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, aluctrl, fpointout, destreg, dsize, loadext, jal, jar);
-	input clk, wrenable, stall;
+module RegDecode(clk, stall, squash, instructionin, delayin, delay2in, rw, busW, wrenable, fpoint, branchtarget, delay2out, instruction, imm32, busA, busB, priorALUresult, ALUwriteback, aluselectA, aluselectB, regdst, alusrc, mem2reg, regwrite, memwrite, branch, jump, aluctrl, fpointout, destreg, dsize, loadext, jal, jar);
+	input clk, wrenable, stall, squash;
 	input [1:0] fpoint, aluselectA, aluselectB;
 	input [31:0] instructionin, delayin, delay2in, busW, priorALUresult, ALUwriteback;
 	input [4:0] rw;
@@ -33,21 +39,35 @@ module RegDecode(clk, stall, instructionin, delayin, delay2in, rw, busW, wrenabl
 	output [3:0] aluctrl;
 	output [1:0] fpointout, dsize;
 	
-	wire extop, open1, zero, branchwire, brancheq;
+	wire extop, open1, zero, branchwire, brancheq, raequal, rbequal;
 	wire [4:0] rs2, rs1, rd;
 	wire [31:0] immediateval, busAwire, busBwire, delayout, fwdbusA, fwdbusB;
 	
+	reg [31:0] busAreg, busBreg;
+
 	adder_32 #(.N(32)) adder0_map ({immediateval[31:2], 2'b00}, delayout, 1'b0, branchtarget, open1);
 	equal compare (fwdbusA, 32'd0, zero);
 	and (branch, branchctrl, branchwire);
 	mux_2to1_n #(.n(1)) branch_eq_ctrl (zero, ~zero, instruction[26], branchctrl); 
-	IDRegister register (clk, stall, instructionin, delayin, delay2in, instruction, delayout, delay2out);
+	IDRegister register (clk, stall, squash, instructionin, delayin, delay2in, instruction, delayout, delay2out);
 	control decoder (instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branchwire, jump, aluctrl, extop, fpointout, rd, rs1, rs2, dsize, loadext, jal, jar);
 	registers regfile (clk,  wrenable, fpoint, rw, rs1, rs2, busW, busAwire, busBwire);
 	extender immed (instruction[15:0], extop, immediateval);
 	mux_2to1_n #(.n(5)) destmux (rs2, rd, regdst, destreg);
-	mux_4to1_n #(.n(32)) fwdAmux (busAwire, priorALUresult, ALUwriteback, 32'd0, aluselectA, fwdbusA);
-	mux_4to1_n #(.n(32)) fwdBmuc (busBwire, priorALUresult, ALUwriteback, 32'd0, aluselectB, fwdbusB);
+	mux_4to1_n #(.n(32)) fwdAmux (busAreg, priorALUresult, ALUwriteback, 32'd0, aluselectA, fwdbusA);
+	mux_4to1_n #(.n(32)) fwdBmux (busBreg, priorALUresult, ALUwriteback, 32'd0, aluselectB, fwdbusB);
+	
+	always @*
+	begin
+	if (rw == rs1)
+		busAreg = busW;
+	else
+		busAreg = busAwire;
+	if (rw == rs2)
+		busBreg = busW;
+	else
+		busBreg = busAwire;
+	end
 	
 	assign imm32 = immediateval;
 	assign busA = fwdbusA;
