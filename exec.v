@@ -87,13 +87,13 @@ module EXRegister(clk, stall, dInst, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMe
 endmodule
 
 
-module exec(clk, stall, dInst, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dImm32, dBusA, dBusB, dRw, dDelayslot2, aluselectA, aluselectB, priorALUresult, ALUwriteback, MemWr, MemToReg, RegWr, Dsize, ALUout, Rw, Jump, FPoint, Loadext, Jal, BusB, Delayslot2);
+module exec(clk, stall, dInst, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dImm32, dBusA, dBusB, dRw, dDelayslot2, MemWr, MemToReg, RegWr, Dsize, ALUout, Rw, Jump, FPoint, Loadext, Jal, BusB, Delayslot2);
 
 	input clk, stall, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dJal, dJar, dLoadext;
 	input [4:0] dRw;
-	input [31:0] dInst, dBusA, dBusB, dDelayslot2, dImm32, priorALUresult, ALUwriteback;
+	input [31:0] dInst, dBusA, dBusB, dDelayslot2, dImm32;
 	input [3:0] dAluCtrl;
-	input [1:0] dFPoint, dDsize, aluselectA, aluselectB;
+	input [1:0] dFPoint, dDsize;
 
 	output MemWr, MemToReg, RegWr, Jump, Loadext, Jal, Jar;
 	output [1:0] FPoint, Dsize;
@@ -112,10 +112,8 @@ module exec(clk, stall, dInst, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, d
 	EXRegister register (clk, stall, dInst, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dImm32, dBusA, dBusB, dRw, dDelayslot2, instruction, RegDst, ALUSrc, MemToReg, RegWr, MemWr, Jump, AluCtrl, FPoint, Dsize, Loadext, Jal, Imm32, BusA, BusB_inside, Rw, Delayslot2);	
 	
 	//Execution part of the single cycle
-    mux_2to1_n #(.n(32)) MUX0(fwdBusB, Imm32, ALUSrc, mux0_out);
-	alu ALU(fwdBusA, mux0_out, AluCtrl, ALUout, open);
-	mux_4to1_n #(.n(32)) MUX1(BusA, priorALUresult, ALUwriteback, 32'd0, aluselectA, fwdBusA); 
-	mux_4to1_n #(.n(32)) MUX2(BusB, priorALUresult, ALUwriteback, 32'd0, aluselectB, fwdBusB);
+    	mux_2to1_n #(.n(32)) MUX0(BusB_inside, Imm32, ALUSrc, mux0_out);
+	alu ALU(BusA, mux0_out, AluCtrl, ALUout, open);
 	
 	assign BusB = BusB_inside;
 
