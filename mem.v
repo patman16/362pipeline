@@ -81,8 +81,8 @@ module mem_unit(clk, dMemWr, dMemtoReg, dRegWr, dDsize, dExecResult, dBusB, dloa
     	extender #(.inN(8), .outN(32)) EXT2(rData[7:0],loadext,mux2_in0); 
     	mux_4to1_n #(.n(32)) MUX2(mux2_in0, mux2_in1, 32'd0, rData, Dsize, dmem_out);
 
-	extender #(.inN(16), .outN(32)) EXT3(busB[15:0],1'b0, mux3_in1);
-   	extender #(.inN(8), .outN(32)) EXT4(busB [7:0],1'b0, mux3_in0); 
+	extender #(.inN(16), .outN(32)) EXT3(BusB[15:0],1'b0, mux3_in1);
+   	extender #(.inN(8), .outN(32)) EXT4(BusB [7:0],1'b0, mux3_in0); 
    	mux_4to1_n #(.n(32)) MUX3(mux3_in0, mux3_in1, 32'd0, BusB, Dsize, datamem_muxin);
 	mux_2to1_n #(.n(32)) MUX4(ExecResult, dmem_out, memtoreg_out, source_out);
 	

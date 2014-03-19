@@ -1,15 +1,3 @@
-module register(clk, reset, d, ce, q);
-	input clk, reset, d, ce;
-	output q;
-	reg q;
-	
-	always @(posedge clk, reset)
-	if (reset == 1'b1)
-	  q <= 1'b0;
-	else if (clk)
-	  q <= d;
-endmodule 
-
 module registers(clk, write, fpoint, rw, rs, rt, busW, busA, busB);
 	input clk, write;
 	input [1:0] fpoint;

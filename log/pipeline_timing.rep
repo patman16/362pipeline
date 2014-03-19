@@ -1,0 +1,1489 @@
+Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -nworst 10000
+        -max_paths 1000
+Design : Write
+Version: D-2010.03-SP5
+Date   : Tue Mar 18 20:33:48 2014
+****************************************
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: writereg_qfpoint_reg_0_
+              (rising edge-triggered flip-flop)
+  Endpoint: fpoint[0] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  writereg_qfpoint_reg_0_/CK (DFF_X1)      0.00       0.00 r
+  writereg_qfpoint_reg_0_/Q (DFF_X1)       0.15       0.15 f
+  fpoint[0] (out)                          0.00       0.15 f
+  data arrival time                                   0.15
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: writereg_qfpoint_reg_1_
+              (rising edge-triggered flip-flop)
+  Endpoint: fpoint[1] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  writereg_qfpoint_reg_1_/CK (DFF_X1)      0.00       0.00 r
+  writereg_qfpoint_reg_1_/Q (DFF_X1)       0.15       0.15 f
+  fpoint[1] (out)                          0.00       0.15 f
+  data arrival time                                   0.15
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: writereg_qregwr_reg
+              (rising edge-triggered flip-flop)
+  Endpoint: regwr (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  writereg_qregwr_reg/CK (DFF_X1)          0.00       0.00 r
+  writereg_qregwr_reg/Q (DFF_X1)           0.15       0.15 f
+  regwr (out)                              0.00       0.15 f
+  data arrival time                                   0.15
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: writereg_qrw_reg_0_
+              (rising edge-triggered flip-flop)
+  Endpoint: rw[0] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  writereg_qrw_reg_0_/CK (DFF_X1)          0.00       0.00 r
+  writereg_qrw_reg_0_/Q (DFF_X1)           0.15       0.15 f
+  rw[0] (out)                              0.00       0.15 f
+  data arrival time                                   0.15
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: writereg_qrw_reg_1_
+              (rising edge-triggered flip-flop)
+  Endpoint: rw[1] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  writereg_qrw_reg_1_/CK (DFF_X1)          0.00       0.00 r
+  writereg_qrw_reg_1_/Q (DFF_X1)           0.15       0.15 f
+  rw[1] (out)                              0.00       0.15 f
+  data arrival time                                   0.15
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: writereg_qrw_reg_2_
+              (rising edge-triggered flip-flop)
+  Endpoint: rw[2] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  writereg_qrw_reg_2_/CK (DFF_X1)          0.00       0.00 r
+  writereg_qrw_reg_2_/Q (DFF_X1)           0.15       0.15 f
+  rw[2] (out)                              0.00       0.15 f
+  data arrival time                                   0.15
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: writereg_qrw_reg_3_
+              (rising edge-triggered flip-flop)
+  Endpoint: rw[3] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  writereg_qrw_reg_3_/CK (DFF_X1)          0.00       0.00 r
+  writereg_qrw_reg_3_/Q (DFF_X1)           0.15       0.15 f
+  rw[3] (out)                              0.00       0.15 f
+  data arrival time                                   0.15
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: writereg_qrw_reg_4_
+              (rising edge-triggered flip-flop)
+  Endpoint: rw[4] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  writereg_qrw_reg_4_/CK (DFF_X1)          0.00       0.00 r
+  writereg_qrw_reg_4_/Q (DFF_X1)           0.15       0.15 f
+  rw[4] (out)                              0.00       0.15 f
+  data arrival time                                   0.15
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: writereg_qfpoint_reg_0_
+              (rising edge-triggered flip-flop)
+  Endpoint: fpoint[0] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  writereg_qfpoint_reg_0_/CK (DFF_X1)      0.00       0.00 r
+  writereg_qfpoint_reg_0_/Q (DFF_X1)       0.08       0.08 r
+  fpoint[0] (out)                          0.00       0.08 r
+  data arrival time                                   0.08
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: writereg_qfpoint_reg_1_
+              (rising edge-triggered flip-flop)
+  Endpoint: fpoint[1] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  writereg_qfpoint_reg_1_/CK (DFF_X1)      0.00       0.00 r
+  writereg_qfpoint_reg_1_/Q (DFF_X1)       0.08       0.08 r
+  fpoint[1] (out)                          0.00       0.08 r
+  data arrival time                                   0.08
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: writereg_qregwr_reg
+              (rising edge-triggered flip-flop)
+  Endpoint: regwr (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  writereg_qregwr_reg/CK (DFF_X1)          0.00       0.00 r
+  writereg_qregwr_reg/Q (DFF_X1)           0.08       0.08 r
+  regwr (out)                              0.00       0.08 r
+  data arrival time                                   0.08
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: writereg_qrw_reg_0_
+              (rising edge-triggered flip-flop)
+  Endpoint: rw[0] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  writereg_qrw_reg_0_/CK (DFF_X1)          0.00       0.00 r
+  writereg_qrw_reg_0_/Q (DFF_X1)           0.08       0.08 r
+  rw[0] (out)                              0.00       0.08 r
+  data arrival time                                   0.08
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: writereg_qrw_reg_1_
+              (rising edge-triggered flip-flop)
+  Endpoint: rw[1] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  writereg_qrw_reg_1_/CK (DFF_X1)          0.00       0.00 r
+  writereg_qrw_reg_1_/Q (DFF_X1)           0.08       0.08 r
+  rw[1] (out)                              0.00       0.08 r
+  data arrival time                                   0.08
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: writereg_qrw_reg_2_
+              (rising edge-triggered flip-flop)
+  Endpoint: rw[2] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  writereg_qrw_reg_2_/CK (DFF_X1)          0.00       0.00 r
+  writereg_qrw_reg_2_/Q (DFF_X1)           0.08       0.08 r
+  rw[2] (out)                              0.00       0.08 r
+  data arrival time                                   0.08
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: writereg_qrw_reg_3_
+              (rising edge-triggered flip-flop)
+  Endpoint: rw[3] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  writereg_qrw_reg_3_/CK (DFF_X1)          0.00       0.00 r
+  writereg_qrw_reg_3_/Q (DFF_X1)           0.08       0.08 r
+  rw[3] (out)                              0.00       0.08 r
+  data arrival time                                   0.08
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: writereg_qrw_reg_4_
+              (rising edge-triggered flip-flop)
+  Endpoint: rw[4] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  writereg_qrw_reg_4_/CK (DFF_X1)          0.00       0.00 r
+  writereg_qrw_reg_4_/Q (DFF_X1)           0.08       0.08 r
+  rw[4] (out)                              0.00       0.08 r
+  data arrival time                                   0.08
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[0] (internal pin)
+  Endpoint: busW[0] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[0] (mux_2to1_n)                0.00       0.00 r
+  busW[0] (out)                            0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[1] (internal pin)
+  Endpoint: busW[1] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[1] (mux_2to1_n)                0.00       0.00 r
+  busW[1] (out)                            0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[2] (internal pin)
+  Endpoint: busW[2] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[2] (mux_2to1_n)                0.00       0.00 r
+  busW[2] (out)                            0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[3] (internal pin)
+  Endpoint: busW[3] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[3] (mux_2to1_n)                0.00       0.00 r
+  busW[3] (out)                            0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[4] (internal pin)
+  Endpoint: busW[4] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[4] (mux_2to1_n)                0.00       0.00 r
+  busW[4] (out)                            0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[5] (internal pin)
+  Endpoint: busW[5] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[5] (mux_2to1_n)                0.00       0.00 r
+  busW[5] (out)                            0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[6] (internal pin)
+  Endpoint: busW[6] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[6] (mux_2to1_n)                0.00       0.00 r
+  busW[6] (out)                            0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[7] (internal pin)
+  Endpoint: busW[7] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[7] (mux_2to1_n)                0.00       0.00 r
+  busW[7] (out)                            0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[8] (internal pin)
+  Endpoint: busW[8] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[8] (mux_2to1_n)                0.00       0.00 r
+  busW[8] (out)                            0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[9] (internal pin)
+  Endpoint: busW[9] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[9] (mux_2to1_n)                0.00       0.00 r
+  busW[9] (out)                            0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[10] (internal pin)
+  Endpoint: busW[10] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[10] (mux_2to1_n)               0.00       0.00 r
+  busW[10] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[11] (internal pin)
+  Endpoint: busW[11] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[11] (mux_2to1_n)               0.00       0.00 r
+  busW[11] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[12] (internal pin)
+  Endpoint: busW[12] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[12] (mux_2to1_n)               0.00       0.00 r
+  busW[12] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[13] (internal pin)
+  Endpoint: busW[13] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[13] (mux_2to1_n)               0.00       0.00 r
+  busW[13] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[14] (internal pin)
+  Endpoint: busW[14] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[14] (mux_2to1_n)               0.00       0.00 r
+  busW[14] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[15] (internal pin)
+  Endpoint: busW[15] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[15] (mux_2to1_n)               0.00       0.00 r
+  busW[15] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[16] (internal pin)
+  Endpoint: busW[16] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[16] (mux_2to1_n)               0.00       0.00 r
+  busW[16] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[17] (internal pin)
+  Endpoint: busW[17] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[17] (mux_2to1_n)               0.00       0.00 r
+  busW[17] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[18] (internal pin)
+  Endpoint: busW[18] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[18] (mux_2to1_n)               0.00       0.00 r
+  busW[18] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[19] (internal pin)
+  Endpoint: busW[19] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[19] (mux_2to1_n)               0.00       0.00 r
+  busW[19] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[20] (internal pin)
+  Endpoint: busW[20] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[20] (mux_2to1_n)               0.00       0.00 r
+  busW[20] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[21] (internal pin)
+  Endpoint: busW[21] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[21] (mux_2to1_n)               0.00       0.00 r
+  busW[21] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[22] (internal pin)
+  Endpoint: busW[22] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[22] (mux_2to1_n)               0.00       0.00 r
+  busW[22] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[23] (internal pin)
+  Endpoint: busW[23] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[23] (mux_2to1_n)               0.00       0.00 r
+  busW[23] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[24] (internal pin)
+  Endpoint: busW[24] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[24] (mux_2to1_n)               0.00       0.00 r
+  busW[24] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[25] (internal pin)
+  Endpoint: busW[25] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[25] (mux_2to1_n)               0.00       0.00 r
+  busW[25] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[26] (internal pin)
+  Endpoint: busW[26] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[26] (mux_2to1_n)               0.00       0.00 r
+  busW[26] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[27] (internal pin)
+  Endpoint: busW[27] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[27] (mux_2to1_n)               0.00       0.00 r
+  busW[27] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[28] (internal pin)
+  Endpoint: busW[28] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[28] (mux_2to1_n)               0.00       0.00 r
+  busW[28] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[29] (internal pin)
+  Endpoint: busW[29] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[29] (mux_2to1_n)               0.00       0.00 r
+  busW[29] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[30] (internal pin)
+  Endpoint: busW[30] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[30] (mux_2to1_n)               0.00       0.00 r
+  busW[30] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[31] (internal pin)
+  Endpoint: busW[31] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[31] (mux_2to1_n)               0.00       0.00 r
+  busW[31] (out)                           0.00       0.00 r
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[0] (internal pin)
+  Endpoint: busW[0] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[0] (mux_2to1_n)                0.00       0.00 f
+  busW[0] (out)                            0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[1] (internal pin)
+  Endpoint: busW[1] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[1] (mux_2to1_n)                0.00       0.00 f
+  busW[1] (out)                            0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[2] (internal pin)
+  Endpoint: busW[2] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[2] (mux_2to1_n)                0.00       0.00 f
+  busW[2] (out)                            0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[3] (internal pin)
+  Endpoint: busW[3] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[3] (mux_2to1_n)                0.00       0.00 f
+  busW[3] (out)                            0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[4] (internal pin)
+  Endpoint: busW[4] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[4] (mux_2to1_n)                0.00       0.00 f
+  busW[4] (out)                            0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[5] (internal pin)
+  Endpoint: busW[5] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[5] (mux_2to1_n)                0.00       0.00 f
+  busW[5] (out)                            0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[6] (internal pin)
+  Endpoint: busW[6] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[6] (mux_2to1_n)                0.00       0.00 f
+  busW[6] (out)                            0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[7] (internal pin)
+  Endpoint: busW[7] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[7] (mux_2to1_n)                0.00       0.00 f
+  busW[7] (out)                            0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[8] (internal pin)
+  Endpoint: busW[8] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[8] (mux_2to1_n)                0.00       0.00 f
+  busW[8] (out)                            0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[9] (internal pin)
+  Endpoint: busW[9] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[9] (mux_2to1_n)                0.00       0.00 f
+  busW[9] (out)                            0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[10] (internal pin)
+  Endpoint: busW[10] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[10] (mux_2to1_n)               0.00       0.00 f
+  busW[10] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[11] (internal pin)
+  Endpoint: busW[11] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[11] (mux_2to1_n)               0.00       0.00 f
+  busW[11] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[12] (internal pin)
+  Endpoint: busW[12] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[12] (mux_2to1_n)               0.00       0.00 f
+  busW[12] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[13] (internal pin)
+  Endpoint: busW[13] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[13] (mux_2to1_n)               0.00       0.00 f
+  busW[13] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[14] (internal pin)
+  Endpoint: busW[14] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[14] (mux_2to1_n)               0.00       0.00 f
+  busW[14] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[15] (internal pin)
+  Endpoint: busW[15] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[15] (mux_2to1_n)               0.00       0.00 f
+  busW[15] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[16] (internal pin)
+  Endpoint: busW[16] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[16] (mux_2to1_n)               0.00       0.00 f
+  busW[16] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[17] (internal pin)
+  Endpoint: busW[17] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[17] (mux_2to1_n)               0.00       0.00 f
+  busW[17] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[18] (internal pin)
+  Endpoint: busW[18] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[18] (mux_2to1_n)               0.00       0.00 f
+  busW[18] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[19] (internal pin)
+  Endpoint: busW[19] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[19] (mux_2to1_n)               0.00       0.00 f
+  busW[19] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[20] (internal pin)
+  Endpoint: busW[20] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[20] (mux_2to1_n)               0.00       0.00 f
+  busW[20] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[21] (internal pin)
+  Endpoint: busW[21] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[21] (mux_2to1_n)               0.00       0.00 f
+  busW[21] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[22] (internal pin)
+  Endpoint: busW[22] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[22] (mux_2to1_n)               0.00       0.00 f
+  busW[22] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[23] (internal pin)
+  Endpoint: busW[23] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[23] (mux_2to1_n)               0.00       0.00 f
+  busW[23] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[24] (internal pin)
+  Endpoint: busW[24] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[24] (mux_2to1_n)               0.00       0.00 f
+  busW[24] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[25] (internal pin)
+  Endpoint: busW[25] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[25] (mux_2to1_n)               0.00       0.00 f
+  busW[25] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[26] (internal pin)
+  Endpoint: busW[26] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[26] (mux_2to1_n)               0.00       0.00 f
+  busW[26] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[27] (internal pin)
+  Endpoint: busW[27] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[27] (mux_2to1_n)               0.00       0.00 f
+  busW[27] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[28] (internal pin)
+  Endpoint: busW[28] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[28] (mux_2to1_n)               0.00       0.00 f
+  busW[28] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[29] (internal pin)
+  Endpoint: busW[29] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[29] (mux_2to1_n)               0.00       0.00 f
+  busW[29] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[30] (internal pin)
+  Endpoint: busW[30] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[30] (mux_2to1_n)               0.00       0.00 f
+  busW[30] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: jalmux/p4[31] (internal pin)
+  Endpoint: busW[31] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  Write              5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  jalmux/p4[31] (mux_2to1_n)               0.00       0.00 f
+  busW[31] (out)                           0.00       0.00 f
+  data arrival time                                   0.00
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+1

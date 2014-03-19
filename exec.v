@@ -87,20 +87,20 @@ module EXRegister(clk, stall, dInst, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMe
 endmodule
 
 
-module exec(clk, stall, dInst, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dImm32, dBusA, dBusB, dRw, dDelayslot2, MemWr, MemToReg, RegWr, Dsize, ALUout, Rw, Jump, FPoint, Loadext, Jal, BusB, Delayslot2);
+module exec(clk, stall, dInst, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dImm32, dBusA, dBusB, dRw, dDelayslot2, Instruction, MemWr, MemToReg, RegWr, Dsize, ALUout, Rw, Jump, FPoint, Loadext, Jal, BusB, Delayslot2);
 
-	input clk, stall, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dJal, dJar, dLoadext;
+	input clk, stall, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dJal, dLoadext;
 	input [4:0] dRw;
 	input [31:0] dInst, dBusA, dBusB, dDelayslot2, dImm32;
 	input [3:0] dAluCtrl;
 	input [1:0] dFPoint, dDsize;
 
-	output MemWr, MemToReg, RegWr, Jump, Loadext, Jal, Jar;
+	output MemWr, MemToReg, RegWr, Jump, Loadext, Jal;
 	output [1:0] FPoint, Dsize;
-	output [31:0] BusB, ALUout, Delayslot2;
+	output [31:0] BusB, ALUout, Delayslot2, Instruction;
 	output [4:0] Rw;
 
-	wire [31:0] mux0_out, instruction; //current instruction, output of mux	
+	wire [31:0] mux0_out; //current output of mux	
 	wire ALUSrc, RegDst;
 	wire [4:0] Rd, Rt;
 	wire [31:0] BusA, BusB_inside, Imm32, fwdBusA, fwdBusB;
@@ -109,7 +109,7 @@ module exec(clk, stall, dInst, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, d
 	
 
 	//Pipeline Register
-	EXRegister register (clk, stall, dInst, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dImm32, dBusA, dBusB, dRw, dDelayslot2, instruction, RegDst, ALUSrc, MemToReg, RegWr, MemWr, Jump, AluCtrl, FPoint, Dsize, Loadext, Jal, Imm32, BusA, BusB_inside, Rw, Delayslot2);	
+	EXRegister register (clk, stall, dInst, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dImm32, dBusA, dBusB, dRw, dDelayslot2, Instruction, RegDst, ALUSrc, MemToReg, RegWr, MemWr, Jump, AluCtrl, FPoint, Dsize, Loadext, Jal, Imm32, BusA, BusB_inside, Rw, Delayslot2);	
 	
 	//Execution part of the single cycle
     	mux_2to1_n #(.n(32)) MUX0(BusB_inside, Imm32, ALUSrc, mux0_out);

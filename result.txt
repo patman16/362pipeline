@@ -1,0 +1,1404 @@
+
+                        DC Professional (TM)
+                           DC Expert (TM)
+                            DC Ultra (TM)
+                       FloorPlan Manager (TM)
+                          HDL Compiler (TM)
+                         VHDL Compiler (TM)
+                        Library Compiler (TM)
+                      DesignWare Developer (TM)
+                          DFT Compiler (TM)
+                            BSD Compiler
+                         Power Compiler (TM)
+
+           Version D-2010.03-SP5 for amd64 -- Oct 18, 2010
+              Copyright (c) 1988-2010 by Synopsys, Inc.
+                         ALL RIGHTS RESERVED
+
+This software and the associated documentation are confidential and 
+proprietary to Synopsys, Inc. Your use or disclosure of this software 
+is subject to the terms and conditions of a written license agreement 
+between you, or your company, and Synopsys, Inc.
+
+The above trademark notice does not imply that you are licensed to use 
+all of the listed products. You are licensed to use only those products 
+for which you have lawfully obtained a valid license key.
+
+Initializing...
+# ========== Copyright Header Begin ==========================================
+# 
+# OpenSPARC T1 Processor File: run.scr
+# Copyright (c) 2006 Sun Microsystems, Inc.  All Rights Reserved.
+# DO NOT ALTER OR REMOVE COPYRIGHT NOTICES.
+# 
+# The above named program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public
+# License version 2 as published by the Free Software Foundation.
+# 
+# The above named program is distributed in the hope that it will be 
+# useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public
+# License along with this work; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+# 
+# ========== Copyright Header End ============================================
+sh date
+Tue Mar 18 20:33:43 CDT 2014
+sh hostname
+joker.ece.northwestern.edu
+sh uptime
+ 20:33:43 up 2 days, 41 min,  1 user,  load average: 0.32, 0.28, 0.27
+remove_design -all
+1
+if {[file exists template]} {
+   sh rm -rf template
+}
+sh mkdir template
+if {![file exists gate]} {
+   sh mkdir gate
+}
+if {![file exists log]} {
+   sh mkdir log
+}
+###########################################################################
+# Setup from environment variables
+###########################################################################
+set dv_root [sh echo \$DV_ROOT]
+set syn_home [sh echo \$SYN_LIB]
+source -echo -verbose user_cfg.tcl
+========== Copyright Header Begin ==========================================
+Error: unknown command '==========' (CMD-005)
+# 
+# OpenSPARC T1 Processor File: user_cfg.scr
+# Copyright (c) 2006 Sun Microsystems, Inc.  All Rights Reserved.
+# DO NOT ALTER OR REMOVE COPYRIGHT NOTICES.
+# 
+# The above named program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public
+# License version 2 as published by the Free Software Foundation.
+# 
+# The above named program is distributed in the hope that it will be 
+# useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public
+# License along with this work; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+# 
+# ========== Copyright Header End ============================================
+source -echo -verbose project_sparc_cfg.tcl
+# ========== Copyright Header Begin ==========================================
+# 
+# OpenSPARC T1 Processor File: project_sparc_cfg.scr
+# Copyright (c) 2006 Sun Microsystems, Inc.  All Rights Reserved.
+# DO NOT ALTER OR REMOVE COPYRIGHT NOTICES.
+# 
+# The above named program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public
+# License version 2 as published by the Free Software Foundation.
+# 
+# The above named program is distributed in the hope that it will be 
+# useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public
+# License along with this work; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+# 
+# ========== Copyright Header End ============================================
+###########################################################################
+# Need to define in this file
+###########################################################################
+# Include target library
+# Include Synopsys Designware
+#
+# clk_list (name + freq/MHz)
+# default_clk
+#
+# setup_skew  (all timing in ns)
+# hold_skew
+# clk_transition
+# max_transition
+# max_fanout
+#
+# This variable indicates we are synthesizing cmp blocks
+set project_sparc_cfg	1
+1
+###########################################################################
+# Specify target library specific variables
+###########################################################################
+#source $dv_root/design/sys/synopsys/script/target_lib.tcl
+###########################################################################
+# Include Synopsys Designware library
+###########################################################################
+# Designware will not be used in sparc control blocks
+set synthetic_library {}
+set link_path [concat  $link_library $synthetic_library]
+* your_library.db
+###########################################################################
+# Sparc/IO clocks
+###########################################################################
+# Name				Freq	Comment
+# cpu_clk			1400.0	CPU clock
+# cmp_gclk			1400.0	CPU clock
+# clk				240.0   BSC clock 200 + 20%
+# The script will NOT automatically pad 20% (1.2x) to these
+# frequencies  mhz,setup_skew  ns,hold_skew  ns,clk_transition  ns
+set clk_list {                                          {cpu_clk   1204.82   0.130   0.130   0.040}                     {cmp_gclk  1204.82   0.130   0.130   0.040}                     {clk       1204.82   0.086   0.086   0.040}                     {rclk      1204.82   0.086   0.086   0.040}     }
+                                          {cpu_clk   1204.82   0.130   0.130   0.040}                     {cmp_gclk  1204.82   0.130   0.130   0.040}                     {clk       1204.82   0.086   0.086   0.040}                     {rclk      1204.82   0.086   0.086   0.040}     
+# setup_skew = local skew (60ps) + jitter (36ps)
+set default_clk rclk
+rclk
+set default_clk_freq 1204.82
+1204.82
+set default_setup_skew       0.086
+0.086
+set default_hold_skew        0.086
+0.086
+set default_clock_transition 0.040
+0.040
+# More parameters
+# setup_skew = local skew (125ps) + jitter (250ps)
+set default_clk clk
+clk
+set default_clk_freq	240
+240
+set default_setup_skew       0.375
+0.375
+set default_hold_skew        0.080
+0.080
+set default_clock_transition 0.050
+0.050
+set max_transition   0.110
+0.110
+set max_fanout         6
+6
+# default input/output delays
+#set default_input_delay  0.15
+#set default_output_delay 0.2 
+#set critical_range       0.30
+set default_input_delay  0.001
+Information: Use of Variable 'default_input_delay' is not recommended. This variable will be obsolete in a future release. (INFO-101)
+0.001
+set default_output_delay 0.001 
+Information: Use of Variable 'default_output_delay' is not recommended. This variable will be obsolete in a future release. (INFO-101)
+0.001
+set critical_range       0.30
+0.30
+# default number of worst path reported
+set num_of_path 1000
+1000
+#default compile style for io is to not flatten the whole design
+set compile_flatten_all 0
+0
+0
+set rtl_files { alu/2to1_mux_n.v alu/add_sub.v alu/fulladder.v alu/mult.v alu/sets.v alu/sll.v alu/sra.v alu/srl.v singlecycle/4to1_mux_n.v singlecycle/alu.v singlecycle/control.v singlecycle/extender.v singlecycle/ifu.v singlecycle/registers.v exec.v mem.v pipeline.v regdecode.v write.v }
+ alu/2to1_mux_n.v alu/add_sub.v alu/fulladder.v alu/mult.v alu/sets.v alu/sll.v alu/sra.v alu/srl.v singlecycle/4to1_mux_n.v singlecycle/alu.v singlecycle/control.v singlecycle/extender.v singlecycle/ifu.v singlecycle/registers.v exec.v mem.v pipeline.v regdecode.v write.v 
+set mix_files {}
+set top_module pipeline
+pipeline
+set include_paths { design/sys/iop/include }
+ design/sys/iop/include 
+set black_box_libs {}
+set black_box_designs {}
+set mem_libs {}
+set compile_effort   "high"
+high
+set area_effort "low"
+low
+set compile_flatten_all 1
+1
+set compile_no_new_cells_at_top_level false
+false
+set default_clk clk
+clk
+set default_clk_freq  1000
+1000
+set default_setup_skew  0.00
+0.00
+set default_hold_skew  0.00
+0.00
+set default_clk_transition  0.00
+0.00
+set clk_list {                                        {clk   800.0   0.000   0.000   0.000}        }
+                                        {clk   800.0   0.000   0.000   0.000}        
+set ideal_net_list {}
+set false_path_list {}
+set enforce_input_fanout_one     0
+0
+set allow_outport_drive_innodes  1
+1
+set skip_scan            0
+0
+set add_lockup_latch     false
+false
+set chain_count          1
+1
+set scanin_port_list     {}
+set scanout_port_list    {}
+set scanenable_port      global_shift_enable
+global_shift_enable
+set has_test_stub        1
+1
+set scanenable_pin       test_stub_no_bist/se
+test_stub_no_bist/se
+set long_chain_so_0_net  long_chain_so_0
+long_chain_so_0
+set short_chain_so_0_net short_chain_so_0
+short_chain_so_0
+set so_0_net             so_0
+so_0
+set insert_extra_lockup_latch 0
+0
+set extra_lockup_latch_clk_list {}
+set search_path [concat $search_path script/]
+. /vol/eecs362/synopsys/dc/libraries/syn /vol/eecs362/synopsys/dc/dw/syn_ver /vol/eecs362/synopsys/dc/dw/sim_ver script/
+set search_path [concat $syn_home    $search_path ]
+. /vol/eecs362/synopsys/dc/libraries/syn /vol/eecs362/synopsys/dc/dw/syn_ver /vol/eecs362/synopsys/dc/dw/sim_ver script/
+#set search_path [concat $search_path /homes/gho705/fault/synthesis-stuff/src/s1_core/trunk/hdl/rtl/sparc_core /homes/gho705/fault/synthesis-stuff/src/a5-syn ]
+set search_path [concat $search_path a5-dev ]
+. /vol/eecs362/synopsys/dc/libraries/syn /vol/eecs362/synopsys/dc/dw/syn_ver /vol/eecs362/synopsys/dc/dw/sim_ver script/ a5-dev
+foreach include_path $include_paths {
+   set search_path [concat $search_path $dv_root/$include_path]
+}
+sh date
+Tue Mar 18 20:33:43 CDT 2014
+set link_library [concat $link_library                          $mem_libs                          $black_box_designs 		      NangateOpenCellLibrary.db]
+* your_library.db NangateOpenCellLibrary.db
+#/homes/gho705/fault/synthesis-stuff/lib/FreePDK45/osu_soc/lib/files/gscl45nm.db]
+# set link_library ["*", /homes/gho705/fault/synthesis-stuff/lib/FreePDK45/osu_soc/lib/files/gscl45nm.db]
+#set target_library $syn_home/lsi_10k.db 
+#set target_library /homes/gho705/fault/synthesis-stuff/lib/FreePDK45/osu_soc/lib/files/gscl45nm.db
+set target_library NangateOpenCellLibrary.db
+NangateOpenCellLibrary.db
+#set target_library /homes/rjoseph/research/mmx-synth/lib/NangateOpenCellLibrary.db
+set target_library [concat $target_library                            $mem_libs]
+NangateOpenCellLibrary.db
+set hdlin_enable_vpp true
+Information: Variable 'hdlin_enable_vpp' is obsolete and is being ignored. (INFO-100)
+true
+set hdlin_auto_save_templates false
+false
+define_design_lib WORK -path .template
+1
+set verilogout_single_bit false
+false
+set hdlout_internal_busses true
+true
+set bus_naming_style {%s[%d]}
+%s[%d]
+set bus_inference_style $bus_naming_style
+%s[%d]
+echo $search_path
+. /vol/eecs362/synopsys/dc/libraries/syn /vol/eecs362/synopsys/dc/dw/syn_ver /vol/eecs362/synopsys/dc/dw/sim_ver script/ a5-dev /design/sys/iop/include
+foreach rtl_file $rtl_files {
+    #read_file -format verilog -define RUNDC $dv_root/$rtl_file
+    read_file -format verilog -define RUNDC $rtl_file
+}
+Loading db file '/home/pjh693/362pipeline/NangateOpenCellLibrary.db'
+Loading db file '/vol/eecs362/synopsys/dc/libraries/syn/gtech.db'
+Loading db file '/vol/eecs362/synopsys/dc/libraries/syn/standard.sldb'
+  Loading link library 'NangateOpenCellLibrary'
+  Loading link library 'gtech'
+Loading verilog file '/home/pjh693/362pipeline/alu/2to1_mux_n.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/alu/2to1_mux_n.v
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/alu/mux_2to1_n.db:mux_2to1_n'
+Loaded 1 design.
+Current design is 'mux_2to1_n'.
+Loading verilog file '/home/pjh693/362pipeline/alu/add_sub.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/alu/add_sub.v
+Warning:  Starting with the 2000.11-1 release, the Presto Verilog reader treats Verilog 'integer' types as signed; synthesized result may not match earlier versions of HDL Compiler. (VER-314)
+Warning:  Starting with the 2000.11-1 release, the Presto Verilog reader treats Verilog 'integer' types as signed; synthesized result may not match earlier versions of HDL Compiler. (VER-314)
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/alu/adder_32.db:adder_32'
+Loaded 2 designs.
+Current design is 'adder_32'.
+Loading verilog file '/home/pjh693/362pipeline/alu/fulladder.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/alu/fulladder.v
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/alu/fulladder.db:fulladder'
+Loaded 1 design.
+Current design is 'fulladder'.
+Loading verilog file '/home/pjh693/362pipeline/alu/mult.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/alu/mult.v
+Warning:  Starting with the 2000.11-1 release, the Presto Verilog reader treats Verilog 'integer' types as signed; synthesized result may not match earlier versions of HDL Compiler. (VER-314)
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/alu/mult.db:mult'
+Loaded 1 design.
+Current design is 'mult'.
+Loading verilog file '/home/pjh693/362pipeline/alu/sets.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/alu/sets.v
+Warning:  /home/pjh693/362pipeline/alu/sets.v:53: Recommend parentheses when a reduction-or follows bitwise-or. (VER-225)
+Warning:  /home/pjh693/362pipeline/alu/sets.v:99: Recommend parentheses when a reduction-or follows bitwise-or. (VER-225)
+Warning:  Starting with the 2000.11-1 release, the Presto Verilog reader treats Verilog 'integer' types as signed; synthesized result may not match earlier versions of HDL Compiler. (VER-314)
+Warning:  Starting with the 2000.11-1 release, the Presto Verilog reader treats Verilog 'integer' types as signed; synthesized result may not match earlier versions of HDL Compiler. (VER-314)
+Warning:  Starting with the 2000.11-1 release, the Presto Verilog reader treats Verilog 'integer' types as signed; synthesized result may not match earlier versions of HDL Compiler. (VER-314)
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/alu/constant.db:constant'
+Loaded 8 designs.
+Current design is 'constant'.
+Loading verilog file '/home/pjh693/362pipeline/alu/sll.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/alu/sll.v
+Warning:  Starting with the 2000.11-1 release, the Presto Verilog reader treats Verilog 'integer' types as signed; synthesized result may not match earlier versions of HDL Compiler. (VER-314)
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/alu/sll.db:sll'
+Loaded 1 design.
+Current design is 'sll'.
+Loading verilog file '/home/pjh693/362pipeline/alu/sra.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/alu/sra.v
+Warning:  Starting with the 2000.11-1 release, the Presto Verilog reader treats Verilog 'integer' types as signed; synthesized result may not match earlier versions of HDL Compiler. (VER-314)
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/alu/sra.db:sra'
+Loaded 1 design.
+Current design is 'sra'.
+Loading verilog file '/home/pjh693/362pipeline/alu/srl.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/alu/srl.v
+Warning:  Starting with the 2000.11-1 release, the Presto Verilog reader treats Verilog 'integer' types as signed; synthesized result may not match earlier versions of HDL Compiler. (VER-314)
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/alu/srl.db:srl'
+Loaded 1 design.
+Current design is 'srl'.
+Loading verilog file '/home/pjh693/362pipeline/singlecycle/4to1_mux_n.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/singlecycle/4to1_mux_n.v
+
+Statistics for case statements in always block at line 9 in file
+	'/home/pjh693/362pipeline/singlecycle/4to1_mux_n.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            11            |    auto/auto     |
+===============================================
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/singlecycle/mux_4to1_n.db:mux_4to1_n'
+Loaded 1 design.
+Current design is 'mux_4to1_n'.
+Loading verilog file '/home/pjh693/362pipeline/singlecycle/alu.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/singlecycle/alu.v
+
+Statistics for case statements in always block at line 25 in file
+	'/home/pjh693/362pipeline/singlecycle/alu.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            26            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine alu line 25 in file
+		'/home/pjh693/362pipeline/singlecycle/alu.v'.
+===========================================================================
+|    Register Name    | Type  | Width | Bus | MB | AR | AS | SR | SS | ST |
+===========================================================================
+|       sel_reg       | Latch |   1   |  N  | N  | N  | N  | -  | -  | -  |
+===========================================================================
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/singlecycle/alu.db:alu'
+Loaded 1 design.
+Current design is 'alu'.
+Loading verilog file '/home/pjh693/362pipeline/singlecycle/control.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/singlecycle/control.v
+
+Statistics for case statements in always block at line 30 in file
+	'/home/pjh693/362pipeline/singlecycle/control.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            50            |    auto/auto     |
+|           109            |     no/auto      |
+===============================================
+
+Inferred memory devices in process
+	in routine control line 30 in file
+		'/home/pjh693/362pipeline/singlecycle/control.v'.
+===========================================================================
+|    Register Name    | Type  | Width | Bus | MB | AR | AS | SR | SS | ST |
+===========================================================================
+|      jall_reg       | Latch |   1   |  N  | N  | N  | N  | -  | -  | -  |
+|     aluctl_reg      | Latch |   4   |  Y  | N  | N  | N  | -  | -  | -  |
+===========================================================================
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/singlecycle/control.db:control'
+Loaded 1 design.
+Current design is 'control'.
+Loading verilog file '/home/pjh693/362pipeline/singlecycle/extender.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/singlecycle/extender.v
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/singlecycle/extender.db:extender'
+Loaded 1 design.
+Current design is 'extender'.
+Loading verilog file '/home/pjh693/362pipeline/singlecycle/ifu.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/singlecycle/ifu.v
+Warning:  /home/pjh693/362pipeline/singlecycle/ifu.v:28: the undeclared symbol 'open4' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  /home/pjh693/362pipeline/singlecycle/ifu.v:46: The statements in initial blocks are ignored. (VER-281)
+
+Inferred memory devices in process
+	in routine PCReg line 8 in file
+		'/home/pjh693/362pipeline/singlecycle/ifu.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|       out_reg       | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/singlecycle/PCReg.db:PCReg'
+Loaded 2 designs.
+Current design is 'PCReg'.
+Loading verilog file '/home/pjh693/362pipeline/singlecycle/registers.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/singlecycle/registers.v
+Warning:  /home/pjh693/362pipeline/singlecycle/registers.v:32: The statements in initial blocks are ignored. (VER-281)
+Warning:  /home/pjh693/362pipeline/singlecycle/registers.v:37: The statements in initial blocks are ignored. (VER-281)
+Error:  /home/pjh693/362pipeline/singlecycle/registers.v:9: Clock clk used as data. (ELAB-305)
+*** Presto compilation terminated with 1 errors. ***
+Error: Can't read 'verilog' file '/home/pjh693/362pipeline/singlecycle/registers.v'. (UID-59)
+No designs were read
+Loading verilog file '/home/pjh693/362pipeline/exec.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/exec.v
+Warning:  /home/pjh693/362pipeline/exec.v:44: The statements in initial blocks are ignored. (VER-281)
+
+Inferred memory devices in process
+	in routine EXRegister line 44 in file
+		'/home/pjh693/362pipeline/exec.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   qDelayslot2_reg   | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|      qInst_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     qRegDst_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     qALUSrc_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|    qMemToReg_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|    qRegWrite_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     qMemWr_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|      qJump_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|    qAluCtrl_reg     | Flip-flop |   4   |  Y  | N  | N  | N  | N  | N  | N  |
+|     qFPoint_reg     | Flip-flop |   2   |  Y  | N  | N  | N  | N  | N  | N  |
+|     qDsize_reg      | Flip-flop |   2   |  Y  | N  | N  | N  | N  | N  | N  |
+|    qLoadext_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|      qJal_reg       | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     qImm32_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|      qBusA_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|      qBusB_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|       qRw_reg       | Flip-flop |   5   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/EXRegister.db:EXRegister'
+Loaded 2 designs.
+Current design is 'EXRegister'.
+Loading verilog file '/home/pjh693/362pipeline/mem.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/mem.v
+Warning:  /home/pjh693/362pipeline/mem.v:34: The statements in initial blocks are ignored. (VER-281)
+Warning:  /home/pjh693/362pipeline/mem.v:90: the undeclared symbol 'execResult_out' assumed to have the default net type, which is 'wire'. (VER-936)
+
+Inferred memory devices in process
+	in routine MEMRegister line 34 in file
+		'/home/pjh693/362pipeline/mem.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     qMemWr_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|    qMemtoReg_reg    | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     qRegWr_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|    qloadext_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|      qJump_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|      qJal_reg       | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|     qDsize_reg      | Flip-flop |   2   |  Y  | N  | N  | N  | N  | N  | N  |
+|     qFPoint_reg     | Flip-flop |   2   |  Y  | N  | N  | N  | N  | N  | N  |
+|       qRw_reg       | Flip-flop |   5   |  Y  | N  | N  | N  | N  | N  | N  |
+|   qExecResult_reg   | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|      qBusB_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|   qDelayslot2_reg   | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/MEMRegister.db:MEMRegister'
+Loaded 2 designs.
+Current design is 'MEMRegister'.
+Loading verilog file '/home/pjh693/362pipeline/pipeline.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/pipeline.v
+Warning:  /home/pjh693/362pipeline/pipeline.v:24: The statements in initial blocks are ignored. (VER-281)
+
+Inferred memory devices in process
+	in routine pipeline line 24 in file
+		'/home/pjh693/362pipeline/pipeline.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    stallack_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+	in routine pipeline line 30 in file
+		'/home/pjh693/362pipeline/pipeline.v'.
+===========================================================================
+|    Register Name    | Type  | Width | Bus | MB | AR | AS | SR | SS | ST |
+===========================================================================
+|      stall_reg      | Latch |   1   |  N  | N  | N  | N  | -  | -  | -  |
+|    stallack_reg2    | Latch |   1   |  N  | N  | N  | N  | -  | -  | -  |
+|      fwdB_reg       | Latch |   2   |  Y  | N  | N  | N  | -  | -  | -  |
+|      fwdA_reg       | Latch |   2   |  Y  | N  | N  | N  | -  | -  | -  |
+===========================================================================
+Error:  /home/pjh693/362pipeline/pipeline.v:24: Net 'stallack' or a directly connected net is driven by more than one source, and not all drivers are three-state. (ELAB-366)
+*** Presto compilation terminated with 1 errors. ***
+Error: Can't read 'verilog' file '/home/pjh693/362pipeline/pipeline.v'. (UID-59)
+No designs were read
+Loading verilog file '/home/pjh693/362pipeline/regdecode.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/regdecode.v
+Warning:  /home/pjh693/362pipeline/regdecode.v:13: The statements in initial blocks are ignored. (VER-281)
+Warning:  /home/pjh693/362pipeline/regdecode.v:50: the undeclared symbol 'branchctrl' assumed to have the default net type, which is 'wire'. (VER-936)
+
+Inferred memory devices in process
+	in routine IDRegister line 13 in file
+		'/home/pjh693/362pipeline/regdecode.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     qdelay_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|      qinst_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     qdelay2_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/IDRegister.db:IDRegister'
+Loaded 2 designs.
+Current design is 'IDRegister'.
+Loading verilog file '/home/pjh693/362pipeline/write.v'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Compiling source file /home/pjh693/362pipeline/write.v
+Warning:  /home/pjh693/362pipeline/write.v:24: The statements in initial blocks are ignored. (VER-281)
+
+Inferred memory devices in process
+	in routine WrRegister line 24 in file
+		'/home/pjh693/362pipeline/write.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     qregwr_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|       qrw_reg       | Flip-flop |   5   |  Y  | N  | N  | N  | N  | N  | N  |
+|      qbusW_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     qfpoint_reg     | Flip-flop |   2   |  Y  | N  | N  | N  | N  | N  | N  |
+|   qdelayslot2_reg   | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|      qjal_reg       | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/WrRegister.db:WrRegister'
+Loaded 2 designs.
+Current design is 'WrRegister'.
+if {[info exists mix_files] && ($mix_files != {}) } {
+   foreach mix_file $mix_files {
+      set index_beg [expr {[string last "/" $mix_file] + 1}]
+      set mix_file_name [string range $mix_file $index_beg end]
+      read_file -format verilog -define RUNDC gate/${mix_file_name}.exp
+   }
+}
+set design_list [list]
+foreach_in_collection design_object [get_designs] {
+   set design_name [get_object_name $design_object]
+   lappend design_list $design_name
+}
+sh date
+Tue Mar 18 20:33:44 CDT 2014
+current_design $top_module
+Error: Can't find design 'pipeline'. (UID-109)
+Current design is 'WrRegister'.
+{WrRegister}
+echo $top_module
+pipeline
+# if {[get_designs -hier $dont_touch_modules] != {}} {
+#    set_dont_touch $dont_touch_modules
+# }
+set dc_shell_status [ link ]
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+
+  Linking design 'WrRegister'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (30 designs)              /home/pjh693/362pipeline/WrRegister.db, etc
+  NangateOpenCellLibrary (library) /home/pjh693/362pipeline/NangateOpenCellLibrary.db
+
+1
+if {$dc_shell_status == 0} {
+   echo "****************************************************"
+   echo "* ERROR!!!! Failed to Link...exiting prematurely.  *"
+   echo "****************************************************"
+   quit
+}
+current_design $top_module
+Error: Can't find design 'pipeline'. (UID-109)
+Current design is 'WrRegister'.
+{WrRegister}
+echo $top_module
+pipeline
+current_design $top_module
+Error: Can't find design 'pipeline'. (UID-109)
+Current design is 'WrRegister'.
+{WrRegister}
+echo $top_module
+pipeline
+set clk_name_list [list]
+set ideal_inputs [list]
+foreach clk_spec $clk_list {
+   set listcnt 0
+   set clk_port_pin {}
+   set clk_name {}
+   set clk_freq 0.0
+   set setup_skew $default_setup_skew
+   set hold_skew  $default_hold_skew
+   set clock_transition  $default_clock_transition
+   set clk_is_port 1
+   foreach element $clk_spec {
+      if {$listcnt == 0} {
+         set clk_port_pin $element
+         set clk_name $element
+      }
+      if {$listcnt == 1} {
+         set clk_freq $element
+      }
+      if {$listcnt == 2} {
+         set setup_skew $element
+      }
+      if {$listcnt == 3} {
+         set hold_skew $element
+      }
+      if {$listcnt == 4} {
+         set clock_transition $element
+      }
+      if {$listcnt == 5} {
+         set clk_name $element
+         set clk_is_port 0
+      }
+      set listcnt [expr $listcnt + 1]
+   }
+   if {$clk_is_port == 1} {
+      set clk_exists [sizeof_collection [find port $clk_port_pin]]
+   } else {
+      set clk_exists [sizeof_collection [find pin $clk_port_pin]]
+   }
+   if {$clk_exists != 0} {
+      set clk_period [expr 1000.0 / $clk_freq / 1.0]
+      set high_time [expr $clk_period / 2.0]
+      create_clock $clk_port_pin -period $clk_period -waveform [list 0 $high_time] -name $clk_name
+      set_clock_uncertainty -setup $setup_skew [find clock $clk_name]
+      set_clock_uncertainty -hold $hold_skew [find clock $clk_name]
+      set_clock_transition $clock_transition [find clock $clk_name]
+      set_dont_touch_network $clk_name
+      if {$clk_is_port == 1} {
+         set_drive 0.0 $clk_name
+         lappend ideal_inputs $clk_name
+      }
+      set clk_name_list [concat  $clk_name_list $clk_name]
+   }
+}
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+if {$clk_name_list == {} } {
+   echo "\[WARNING\] No clock is defined,create a virtual one -- $default_clk..."
+   set clk_name $default_clk
+   set clk_freq $default_clk_freq
+   set clk_period [expr 1000.0 / $clk_freq / 1.0]
+   set high_time [expr $clk_period / 2.0]
+   set setup_skew $default_setup_skew
+   set hold_skew  $default_hold_skew
+   set clock_transition  $default_clock_transition
+   create_clock -name $clk_name -period $clk_period -waveform [list 0 $high_time]
+   set_clock_uncertainty -setup $setup_skew $clk_name
+   set_clock_uncertainty -hold $hold_skew $clk_name
+}
+set non_ideal_inputs [list]
+foreach_in_collection input_object [all_inputs] {
+   set input_name [get_object_name $input_object]
+   set input_is_ideal [lsearch -exact $ideal_net_list $input_name]
+   if {$input_is_ideal == -1} {
+      lappend non_ideal_inputs $input_name
+   } else {
+      lappend ideal_inputs $input_name
+   }
+}
+echo $ideal_inputs
+clk
+echo $non_ideal_inputs
+clk dregwr {drw[4]} {drw[3]} {drw[2]} {drw[1]} {drw[0]} {dbusW[31]} {dbusW[30]} {dbusW[29]} {dbusW[28]} {dbusW[27]} {dbusW[26]} {dbusW[25]} {dbusW[24]} {dbusW[23]} {dbusW[22]} {dbusW[21]} {dbusW[20]} {dbusW[19]} {dbusW[18]} {dbusW[17]} {dbusW[16]} {dbusW[15]} {dbusW[14]} {dbusW[13]} {dbusW[12]} {dbusW[11]} {dbusW[10]} {dbusW[9]} {dbusW[8]} {dbusW[7]} {dbusW[6]} {dbusW[5]} {dbusW[4]} {dbusW[3]} {dbusW[2]} {dbusW[1]} {dbusW[0]} {dfpoint[1]} {dfpoint[0]} {ddelayslot2[31]} {ddelayslot2[30]} {ddelayslot2[29]} {ddelayslot2[28]} {ddelayslot2[27]} {ddelayslot2[26]} {ddelayslot2[25]} {ddelayslot2[24]} {ddelayslot2[23]} {ddelayslot2[22]} {ddelayslot2[21]} {ddelayslot2[20]} {ddelayslot2[19]} {ddelayslot2[18]} {ddelayslot2[17]} {ddelayslot2[16]} {ddelayslot2[15]} {ddelayslot2[14]} {ddelayslot2[13]} {ddelayslot2[12]} {ddelayslot2[11]} {ddelayslot2[10]} {ddelayslot2[9]} {ddelayslot2[8]} {ddelayslot2[7]} {ddelayslot2[6]} {ddelayslot2[5]} {ddelayslot2[4]} {ddelayslot2[3]} {ddelayslot2[2]} {ddelayslot2[1]} {ddelayslot2[0]} djal
+set_input_delay $default_input_delay -clock $default_clk $non_ideal_inputs
+1
+set_output_delay $default_output_delay -clock $default_clk [all_outputs]
+1
+if {$clk_name_list != {} } {
+   group_path -name "reg2reg" -critical_range $critical_range -from [ all_registers -clock_pins ] -to [ all_registers -data_pins ]
+   group_path -name "in2reg"  -from $non_ideal_inputs -to [ all_registers -data_pins ]
+   group_path -name "reg2out" -from [ all_registers -clock_pins ] -to [all_outputs]
+}
+Information: Updating graph... (UID-83)
+Information: Updating graph... (UID-83)
+Information: Updating graph... (UID-83)
+1
+group_path -name "in2out"  -from $non_ideal_inputs -to [all_outputs]
+1
+if {[info exists false_path_list] && ($false_path_list != {}) } {
+        set_false_path -through $false_path_list
+}
+if {[info exists enforce_input_fanout_one] && ($enforce_input_fanout_one  == 1)} {
+   set_max_fanout 1 $non_ideal_inputs
+}
+# Load custom constraint file for the unit
+# This will overwrite the default constraints
+# Report port contraint information just applied to check for errors
+###########################################################################
+# 4f. More constraints and setup before compile
+###########################################################################
+# This is to prevent assign statements from generated in the netlist
+# Certain rtl coding conventions need to be followed. For IO blocks only 
+# write_name_nets_same_as_ports
+if {[info exists project_io_cfg] && ($project_io_cfg == 1) } {
+   foreach_in_collection design [ get_designs "*" ] {
+      current_design $design
+      set_fix_multiple_port_nets -outputs -feedthroughs 
+   }
+   current_design $top_module
+}
+#check timing constraints
+###########################################################################
+# 5a. Compile
+###########################################################################
+# Disable cells that we don't want to use in the library
+if {$dont_use_cells != 0} {
+   if {[info exists my_dont_use_cell_list] && ($my_dont_use_cell_list != {}) } {
+      set dont_use_cell_list [concat $dont_use_cell_list $my_dont_use_cell_list]
+   }
+   foreach dont_use_cell $dont_use_cell_list {
+      set_dont_use [find lib_cell $dont_use_cell]
+   }
+}
+Error: can't read "dont_use_cells": no such variable
+	Use error_info for more info. (CMD-013)
+sh date
+Tue Mar 18 20:33:44 CDT 2014
+sh uptime
+ 20:33:44 up 2 days, 41 min,  1 user,  load average: 0.32, 0.28, 0.27
+# Switch off the dont_touch attribute globally for set_size_only cells
+set dont_touch_nets_with_size_only_cells false
+false
+## Source user compile options
+#if set to 1,the whole design will be flattened. default 1 for cmp
+if {[info exists compile_flatten_all] && ($compile_flatten_all  == 1)} {
+      ungroup -flatten -all
+   }
+Warning: Design has no hierarchy.  No cells can be ungrouped. (UID-228)
+0
+# compile !!
+if {[info exists project_io_cfg] && ($project_io_cfg == 1) } {
+      set dc_shell_status [ compile -boundary_optimization -exact_map -map_effort $compile_effort -area_effort $area_effort]
+   }
+if {[info exists project_sparc_cfg] && ($project_sparc_cfg == 1) } {
+      if {[info exists use_physopt] && ($use_physopt == 1)} {
+         set_fix_multiple_port_nets -all -buffer_constants
+      }
+      set dc_shell_status [ compile -boundary_optimization -exact_map -map_effort $compile_effort -area_effort $area_effort]
+   }
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library       |      Version       | Available |
+============================================================================
+| Basic DW Building Blocks                | D-2010.03-DWBB_1010 |    *     |
+| Licensed DW Building Blocks             |                    |           |
+============================================================================
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'WrRegister'
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Mapping Optimizations  (High effort)
+  -------------------------------
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:00     378.4      0.00       0.0       0.0                          
+    0:00:00     378.4      0.00       0.0       0.0                          
+    0:00:00     378.4      0.00       0.0       0.0                          
+
+
+  Beginning Critical Range Optimization
+  -------------------------------------
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:00     378.4      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:00     378.4      0.00       0.0       0.0                          
+    0:00:00     378.4      0.00       0.0       0.0                          
+    0:00:00     378.4      0.00       0.0       0.0                          
+    0:00:00     378.4      0.00       0.0       0.0                          
+    0:00:00     378.4      0.00       0.0       0.0                          
+    0:00:00     378.4      0.00       0.0       0.0                          
+    0:00:00     378.4      0.00       0.0       0.0                          
+    0:00:00     378.4      0.00       0.0       0.0                          
+    0:00:00     378.4      0.00       0.0       0.0                          
+    0:00:00     378.4      0.00       0.0       0.0                          
+    0:00:00     378.4      0.00       0.0       0.0                          
+
+
+  Beginning Critical Range Optimization
+  -------------------------------------
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:00     378.4      0.00       0.0       0.0                          
+Loading db file '/home/pjh693/362pipeline/NangateOpenCellLibrary.db'
+
+  Optimization Complete
+  ---------------------
+1
+if {$dc_shell_status == 0} {
+      echo "*******************************************************"
+      echo "* ERROR!!!! Failed to compile...exiting prematurely.  *"
+      echo "*******************************************************"
+      quit
+   }
+sh date
+Tue Mar 18 20:33:45 CDT 2014
+###########################################################################
+# 5e. Insert Scan - Hook up the scan chain.
+###########################################################################
+if {[info exists use_physopt] && ($use_physopt == 1)} {
+   set skip_scan 1
+}
+if {[info exists skip_scan] && ($skip_scan == 1)} {
+   ######  skip section 5e. 
+} else {
+
+current_design $top_module
+
+## Tell DC the design is "scan ready"
+## We do this because we already instantiate scan flops in the rtl
+set_attribute $top_module is_test_ready true -type boolean
+foreach_in_collection design_object [get_designs] {
+   current_design $design_object
+   # make sure the module has FFs in it to prevent warning messages
+   if { [all_registers] != {} } {
+      set_attribute [all_registers] scanned_by_test_compiler true -type boolean
+   }
+}
+
+current_design $top_module
+
+
+# Tell DC not to optimize away spare FF's 
+set compile_delete_unloaded_sequential_cells false
+
+# Disable cells that we don't want to use in the library
+if {$dont_use_cells != 0} {
+   foreach dont_use_cell $dont_use_cell_list {
+      set_dont_use [find lib_cell $dont_use_cell]
+   }
+}
+
+# Insert scan chain with number of chains specified by user
+# Allow scan chain to hook up flops clocked by different clocks
+# Add lockup latches between clock domains
+set_scan_configuration -add_lockup $add_lockup_latch -chain_count $chain_count -clock_mixing mix_clocks
+
+# This should prevent assign statements from generated in the netlist
+# at the cost of extra compile time. For cmp only 
+if {[info exists project_sparc_cfg] && ($project_sparc_cfg == 1) } {
+   foreach_in_collection design [ get_designs "*" ] {
+      current_design $design
+      set_fix_multiple_port_nets -all -buffer_constants
+   }
+
+   current_design $top_module
+
+   # allow_outport_drive_innodes is used by sparc units but not IO units
+   # set this switch to 0 to make sure output port doesn't driving internal nodes
+   if {[info exists allow_outport_drive_innodes] && ($allow_outport_drive_innodes == 0)} {
+      set_isolate_ports -type inverter [all_outputs]
+   }
+
+   current_design $top_module
+   compile -inc
+}
+
+
+### section 5e. will be skipped if user want to use PC flow
+}
+Error: Can't find design 'pipeline'. (UID-109)
+Current design is 'WrRegister'.
+Warning: Can't find object 'pipeline' in design 'WrRegister'. (UID-95)
+Current design is 'mux_2to1_n'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'adder_32'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'add_sub_32'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'fulladder'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'mult'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'constant'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'equal'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'aNotb'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'greaterThan'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'greaterOrEqual'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'Notab'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'lessThan'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'lessOrEqual'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'sll'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'sra'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'srl'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'mux_4to1_n'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'alu'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'control'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Information: Attribute 'scanned_by_test_compiler' is set on 5 objects. (UID-186)
+Current design is 'extender'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Current design is 'PCReg'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Information: Attribute 'scanned_by_test_compiler' is set on 32 objects. (UID-186)
+Current design is 'ifu'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Building the design 'adder_32' instantiated from design 'ifu' with
+	the parameters "N=30". (HDL-193)
+Warning: Cannot find the design 'adder_32' in the library 'WORK'. (LBR-1)
+Information: Building the design 'mux_2to1_n' instantiated from design 'ifu' with
+	the parameters "n=30". (HDL-193)
+Warning: Cannot find the design 'mux_2to1_n' in the library 'WORK'. (LBR-1)
+Information: Building the design 'PCReg' instantiated from design 'ifu' with
+	the parameters "width=30". (HDL-193)
+Warning: Cannot find the design 'PCReg' in the library 'WORK'. (LBR-1)
+Information: Building the design 'imem' instantiated from design 'ifu' with
+	the parameters "SIZE=1024". (HDL-193)
+Warning: Cannot find the design 'imem' in the library 'WORK'. (LBR-1)
+Information: Building the design 'extender' instantiated from design 'ifu' with
+	the parameters "inN=26,outN=32". (HDL-193)
+Warning: Cannot find the design 'extender' in the library 'WORK'. (LBR-1)
+Warning: Unable to resolve reference 'adder_32' in 'ifu'. (LINK-5)
+Warning: Unable to resolve reference 'mux_2to1_n' in 'ifu'. (LINK-5)
+Warning: Unable to resolve reference 'PCReg' in 'ifu'. (LINK-5)
+Warning: Unable to resolve reference 'imem' in 'ifu'. (LINK-5)
+Warning: Unable to resolve reference 'extender' in 'ifu'. (LINK-5)
+Warning: Design 'ifu' has '5' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Information: Updating graph... (UID-83)
+Current design is 'EXRegister'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Warning: Design 'EXRegister' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Information: Attribute 'scanned_by_test_compiler' is set on 181 objects. (UID-186)
+Current design is 'exec'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Building the design 'mux_2to1_n' instantiated from design 'exec' with
+	the parameters "n=32". (HDL-193)
+Warning: Cannot find the design 'mux_2to1_n' in the library 'WORK'. (LBR-1)
+Warning: Unable to resolve reference 'mux_2to1_n' in 'exec'. (LINK-5)
+Warning: Design 'exec' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Warning: Design 'exec' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Warning: Design 'exec' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Warning: Design 'exec' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Information: Attribute 'scanned_by_test_compiler' is set on 182 objects. (UID-186)
+Current design is 'MEMRegister'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Information: Attribute 'scanned_by_test_compiler' is set on 111 objects. (UID-186)
+Current design is 'mem_unit'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Building the design 'dmem' instantiated from design 'mem_unit' with
+	the parameters "SIZE=16384". (HDL-193)
+Warning: Cannot find the design 'dmem' in the library 'WORK'. (LBR-1)
+Information: Building the design 'extender' instantiated from design 'mem_unit' with
+	the parameters "inN=8,outN=32". (HDL-193)
+Warning: Cannot find the design 'extender' in the library 'WORK'. (LBR-1)
+Information: Building the design 'mux_4to1_n' instantiated from design 'mem_unit' with
+	the parameters "n=32". (HDL-193)
+Warning: Cannot find the design 'mux_4to1_n' in the library 'WORK'. (LBR-1)
+Information: Building the design 'mux_2to1_n' instantiated from design 'mem_unit' with
+	the parameters "n=32". (HDL-193)
+Warning: Cannot find the design 'mux_2to1_n' in the library 'WORK'. (LBR-1)
+Warning: Unable to resolve reference 'dmem' in 'mem_unit'. (LINK-5)
+Warning: Unable to resolve reference 'extender' in 'mem_unit'. (LINK-5)
+Warning: Unable to resolve reference 'mux_4to1_n' in 'mem_unit'. (LINK-5)
+Warning: Unable to resolve reference 'mux_2to1_n' in 'mem_unit'. (LINK-5)
+Warning: Design 'mem_unit' has '4' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Warning: Design 'mem_unit' has '4' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Warning: Design 'mem_unit' has '4' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Information: Attribute 'scanned_by_test_compiler' is set on 111 objects. (UID-186)
+Current design is 'IDRegister'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Information: Attribute 'scanned_by_test_compiler' is set on 96 objects. (UID-186)
+Current design is 'RegDecode'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Building the design 'registers'. (HDL-193)
+Warning: Cannot find the design 'registers' in the library 'WORK'. (LBR-1)
+Information: Building the design 'mux_2to1_n' instantiated from design 'RegDecode' with
+	the parameters "n=5". (HDL-193)
+Warning: Cannot find the design 'mux_2to1_n' in the library 'WORK'. (LBR-1)
+Information: Building the design 'mux_4to1_n' instantiated from design 'RegDecode' with
+	the parameters "n=32". (HDL-193)
+Warning: Cannot find the design 'mux_4to1_n' in the library 'WORK'. (LBR-1)
+Warning: Unable to resolve reference 'registers' in 'RegDecode'. (LINK-5)
+Warning: Unable to resolve reference 'mux_2to1_n' in 'RegDecode'. (LINK-5)
+Warning: Unable to resolve reference 'mux_4to1_n' in 'RegDecode'. (LINK-5)
+Warning: Design 'RegDecode' has '3' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Warning: Design 'RegDecode' has '3' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Warning: Design 'RegDecode' has '3' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Information: Attribute 'scanned_by_test_compiler' is set on 101 objects. (UID-186)
+Current design is 'WrRegister'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Information: Attribute 'scanned_by_test_compiler' is set on 73 objects. (UID-186)
+Current design is 'Write'.
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Building the design 'mux_2to1_n' instantiated from design 'Write' with
+	the parameters "n=32". (HDL-193)
+Warning: Cannot find the design 'mux_2to1_n' in the library 'WORK'. (LBR-1)
+Warning: Unable to resolve reference 'mux_2to1_n' in 'Write'. (LINK-5)
+Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Information: Updating graph... (UID-83)
+Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Information: Attribute 'scanned_by_test_compiler' is set on 73 objects. (UID-186)
+Error: Can't find design 'pipeline'. (UID-109)
+Current design is 'Write'.
+Error: can't read "dont_use_cells": no such variable
+	Use error_info for more info. (CMD-013)
+###########################################################################
+# 6. Write Out Design
+###########################################################################
+# Get rid of *cell* names
+define_name_rules afara_rules -map {{ {"\\*cell\\*", "UDW_"}}}
+1
+change_names -rule afara_rules -hierarchy
+Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+1
+sh date
+Tue Mar 18 20:33:48 CDT 2014
+if {[info exists use_physopt] && ($use_physopt == 1)} {
+   write -format verilog -hier -output [format "%s%s%s" gate/ $top_module _hier_fromdc.v]
+} else {
+   write -format verilog -hier -output [format "%s%s%s" gate/ $top_module _hier.v]
+}
+Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Writing verilog file '/home/pjh693/362pipeline/gate/pipeline_hier.v'.
+1
+###########################################################################
+# 7. Write Reports
+###########################################################################
+redirect [format "%s%s%s" log/ $top_module _hier_area.rep] { report_area }
+redirect -append [format "%s%s%s" log/ $top_module _hier_area.rep] { report_reference }
+redirect [format "%s%s%s" log/ $top_module _hier_timing.rep] { report_timing -max_paths 100}
+###########################################################################
+# 8. Flatten hierarchy for backend tools
+###########################################################################
+sh date
+Tue Mar 18 20:33:48 CDT 2014
+# remove dont_touch attribute before flattening the design
+if { [get_designs -hier $dont_touch_modules] != {} } {
+   set_dont_touch $dont_touch_modules false
+}
+Error: can't read "dont_touch_modules": no such variable
+	Use error_info for more info. (CMD-013)
+current_design $top_module
+Error: Can't find design 'pipeline'. (UID-109)
+Current design is 'Write'.
+{Write}
+ungroup -all -flatten
+Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+1
+# Make sure flat netlist does not have "/" in signal names
+#define_name_rules hier_change -restricted "/" -replacement_char "_"
+#change_names -rule hier_change -hierarchy
+# When writing out Verilog files, set the
+# verilogout_single_bit variable to false (the default).
+# Set the bus_inference_style variable and the
+# bus_naming_style variable to the naming style.  For
+# more information, see the man pages for the
+# bus_inference_style and bus_naming_style variables.
+change_names -rules verilog -hierarchy
+Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+1
+# Write out flat netlist.  Location depends on CMP or IO synthesis
+if {[info exists project_io_cfg] && ($project_io_cfg == 1) } {
+   write -format verilog -output [format "%s%s%s"  gate/ $top_module _flat_nc.v]
+} else {
+   write -format verilog -output [format "%s%s%s"  gate/ $top_module _flat.v]
+}
+Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+Writing verilog file '/home/pjh693/362pipeline/gate/pipeline_flat.v'.
+1
+# Report flattened results
+redirect [format "%s%s%s" log/ $top_module _area.rep] { report_area }
+redirect -append [format "%s%s%s" log/ $top_module _area.rep] {report_reference }
+redirect [format "%s%s%s" log/ $top_module _timing.rep] { report_timing -max_paths 1000 -nworst 10000}
+#redirect -append [format "%s%s%s" log/ $top_module _timing.rep] { report_timing -true}
+#write_sdf -version 2.1 A5.sdf
+#redirect [format "%s%s%s" log/ $top_module _timing.rep] { report_timing -max_paths 1000 -greater_path 2.5 -nworst 10000}
+#redirect [format "%s%s%s" log/ $top_module _timing_in2out.rep] { report_timing -max_paths 1000 -nworst 10 -group in2out -path end}
+#redirect [format "%s%s%s" log/ $top_module _timing_in2reg.rep] { report_timing -max_paths 1000 -nworst 10 -group in2reg -path end}
+#redirect [format "%s%s%s" log/ $top_module _timing_reg2out.rep] { report_timing -max_paths 1000 -nworst 10 -group reg2out -path end}
+#redirect [format "%s%s%s" log/ $top_module _timing_reg2reg.rep] { report_timing -max_paths 1000 -nworst 10 -group reg2reg -path end}
+#redirect [format "%s%s%s" log/ $top_module _timing.rep] { report_timing -max_paths 1 -nworst 1}
+#redirect [format "%s%s%s" log/ $top_module _path_group.rep] { report_path_group }
+###########################################################################
+# 9. Compress output files
+###########################################################################
+#sh gzip -f gate/${top_module}_hier.v 
+#sh gzip -f gate/${top_module}_flat.v
+###########################################################################
+# 10. Check design and Detect unmapped design
+###########################################################################
+set unmapped_designs [get_designs -filter "is_unmapped == true" $top_module]
+Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+if {  [sizeof_collection $unmapped_designs] != 0 } {
+   echo "****************************************************"
+   echo "* ERROR!!!! Compile finished with unmapped logic.  *"
+   echo "****************************************************"
+   quit
+}
+###########################################################################
+# 11. Done
+###########################################################################
+sh date
+Tue Mar 18 20:33:48 CDT 2014
+echo "run.scr completed successfully"
+run.scr completed successfully
+quit
+Information: Defining new variable 'allow_outport_drive_innodes'. (CMD-041)
+Information: Defining new variable 'non_ideal_inputs'. (CMD-041)
+Information: Defining new variable 'high_time'. (CMD-041)
+Information: Defining new variable 'default_clk_transition'. (CMD-041)
+Information: Defining new variable 'critical_range'. (CMD-041)
+Information: Defining new variable 'mix_files'. (CMD-041)
+Information: Defining new variable 'false_path_list'. (CMD-041)
+Information: Defining new variable 'element'. (CMD-041)
+Information: Defining new variable 'unmapped_designs'. (CMD-041)
+Information: Defining new variable 'long_chain_so_0_net'. (CMD-041)
+Information: Defining new variable 'clk_exists'. (CMD-041)
+Information: Defining new variable 'ideal_inputs'. (CMD-041)
+Information: Defining new variable 'default_clk_freq'. (CMD-041)
+Information: Defining new variable 'num_of_path'. (CMD-041)
+Information: Defining new variable 'enforce_input_fanout_one'. (CMD-041)
+Information: Defining new variable 'clk_name'. (CMD-041)
+Information: Defining new variable 'default_hold_skew'. (CMD-041)
+Information: Defining new variable 'compile_flatten_all'. (CMD-041)
+Information: Defining new variable 'so_0_net'. (CMD-041)
+Information: Defining new variable 'input_object'. (CMD-041)
+Information: Defining new variable 'max_fanout'. (CMD-041)
+Information: Defining new variable 'include_paths'. (CMD-041)
+Information: Defining new variable 'area_effort'. (CMD-041)
+Information: Defining new variable 'max_transition'. (CMD-041)
+Information: Defining new variable 'clk_period'. (CMD-041)
+Information: Defining new variable 'project_sparc_cfg'. (CMD-041)
+Information: Defining new variable 'clock_transition'. (CMD-041)
+Information: Defining new variable 'extra_lockup_latch_clk_list'. (CMD-041)
+Information: Defining new variable 'mem_libs'. (CMD-041)
+Information: Defining new variable 'black_box_designs'. (CMD-041)
+Information: Defining new variable 'clk_list'. (CMD-041)
+Information: Defining new variable 'clk_port_pin'. (CMD-041)
+Information: Defining new variable 'default_clock_transition'. (CMD-041)
+Information: Defining new variable 'listcnt'. (CMD-041)
+Information: Defining new variable 'clk_name_list'. (CMD-041)
+Information: Defining new variable 'top_module'. (CMD-041)
+Information: Defining new variable 'compile_group_pull_control_logic'. (CMD-041)
+Information: Defining new variable 'input_name'. (CMD-041)
+Information: Defining new variable 'setup_skew'. (CMD-041)
+Information: Defining new variable 'has_test_stub'. (CMD-041)
+Information: Defining new variable 'default_clk'. (CMD-041)
+Information: Defining new variable 'default_setup_skew'. (CMD-041)
+Information: Defining new variable 'add_lockup_latch'. (CMD-041)
+Information: Defining new variable 'design_name'. (CMD-041)
+Information: Defining new variable 'ideal_net_list'. (CMD-041)
+Information: Defining new variable 'dv_root'. (CMD-041)
+Information: Defining new variable 'dc_shell_status'. (CMD-041)
+Information: Defining new variable 'skip_scan'. (CMD-041)
+Information: Defining new variable 'clk_is_port'. (CMD-041)
+Information: Defining new variable 'rtl_file'. (CMD-041)
+Information: Defining new variable 'design_object'. (CMD-041)
+Information: Defining new variable 'syn_home'. (CMD-041)
+Information: Defining new variable 'compile_effort'. (CMD-041)
+Information: Defining new variable 'include_path'. (CMD-041)
+Information: Defining new variable 'scanenable_pin'. (CMD-041)
+Information: Defining new variable 'scanenable_port'. (CMD-041)
+Information: Defining new variable 'clk_freq'. (CMD-041)
+Information: Defining new variable 'scanin_port_list'. (CMD-041)
+Information: Defining new variable 'rtl_files'. (CMD-041)
+Information: Defining new variable 'insert_extra_lockup_latch'. (CMD-041)
+Information: Defining new variable 'hold_skew'. (CMD-041)
+Information: Defining new variable 'clk_spec'. (CMD-041)
+Information: Defining new variable 'black_box_libs'. (CMD-041)
+Information: Defining new variable 'scanout_port_list'. (CMD-041)
+Information: Defining new variable 'short_chain_so_0_net'. (CMD-041)
+Information: Defining new variable 'input_is_ideal'. (CMD-041)
+Information: Defining new variable 'design_list'. (CMD-041)
+Information: Defining new variable 'chain_count'. (CMD-041)
+
+Thank you...

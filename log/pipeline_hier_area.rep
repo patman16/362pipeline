@@ -1,0 +1,55 @@
+Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : area
+Design : Write
+Version: D-2010.03-SP5
+Date   : Tue Mar 18 20:33:48 2014
+****************************************
+
+Information: Updating design information... (UID-85)
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /home/pjh693/362pipeline/NangateOpenCellLibrary.db)
+
+Number of ports:              114
+Number of nets:               179
+Number of cells:                2
+Number of references:           2
+
+Combinational area:          0.000000
+Noncombinational area:     330.105988
+Net Interconnect area:      52.855929  
+
+Total cell area:           330.105988
+Total area:                382.961917
+
+Information: This design contains black box (unknown) components. (RPT-8)
+1
+Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : reference
+Design : Write
+Version: D-2010.03-SP5
+Date   : Tue Mar 18 20:33:48 2014
+****************************************
+
+Attributes:
+    b - black box (unknown)
+   bo - allows boundary optimization
+    d - dont_touch
+   mo - map_only
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    s - synthetic operator
+    u - contains unmapped logic
+
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+WrRegister                      330.105988       1    330.105988  h, n
+mux_2to1_n                        0.000000       1      0.000000  b
+-----------------------------------------------------------------------------
+Total 2 references                                    330.105988
+1

@@ -20,10 +20,10 @@
 # ========== Copyright Header End ============================================
 source -echo -verbose project_sparc_cfg.tcl
 
-set rtl_files { 2to1_mux_n.v add_sub.v fulladder.v mult.v sets.v sll.v sra.v srl.v ../alu.v }
+set rtl_files { alu/2to1_mux_n.v alu/add_sub.v alu/fulladder.v alu/mult.v alu/sets.v alu/sll.v alu/sra.v alu/srl.v singlecycle/4to1_mux_n.v singlecycle/alu.v singlecycle/control.v singlecycle/extender.v singlecycle/ifu.v singlecycle/registers.v exec.v mem.v pipeline.v regdecode.v write.v }
 
 set mix_files {}
-set top_module alu
+set top_module pipeline
 set include_paths { design/sys/iop/include }
 
 set black_box_libs {}
@@ -43,7 +43,7 @@ set default_setup_skew  0.00
 set default_hold_skew  0.00
 set default_clk_transition  0.00
 set clk_list {                        \
-                {clk   1000.0   0.000   0.000   0.000}        \
+                {clk   800.0   0.000   0.000   0.000}        \
 }
 set ideal_net_list {}
 set false_path_list {}
