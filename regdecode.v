@@ -60,13 +60,13 @@ module RegDecode(clk, stall, squash, instructionin, delayin, delay2in, rw, busW,
 	always @*
 	begin
 	if (rw == rs1)
-		busAreg = busW;
+		busAreg <= busW;
 	else
-		busAreg = busAwire;
+		busAreg <= busAwire;
 	if (rw == rs2)
-		busBreg = busW;
+		busBreg <= busW;
 	else
-		busBreg = busBwire;
+		busBreg <= busBwire;
 	end
 	
 	assign imm32 = immediateval;

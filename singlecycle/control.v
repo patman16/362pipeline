@@ -59,9 +59,9 @@ module control(instruction, regdst, alusrc, mem2reg, regwrite, memwrite, branch,
 				//movi2fp
 				53 : begin aluctl <= 4'b0000; fpnt <= 2'b10; end
 				//mult
-				14 : begin aluctl <= 4'b0101; fpnt <= 2'b11; end
+				14 : aluctl <= 4'b0101;
 				//multu
-				22 : begin aluctl <= 4'b0101; fpnt <= 2'b11; end
+				22 : aluctl <= 4'b0101;
 				//nop
 				21 : begin regwr <= 1'b0; aluctl <= 4'b0000; end 
 				//or
