@@ -81,7 +81,8 @@ set default_clk clk
 set default_clk_freq	240
 set default_setup_skew       0.375
 set default_hold_skew        0.080
-set default_clock_transition 0.050
+set default_clock_transition 0
+#set default_clock_transition 0.050
 
 set max_transition   0.110
 set max_fanout         6
@@ -91,8 +92,10 @@ set max_fanout         6
 #set default_output_delay 0.2 
 #set critical_range       0.30
 
-set default_input_delay  0.001
-set default_output_delay 0.001 
+set default_input_delay  0
+#set default_input_delay  0.001
+set default_output_delay 0 
+#set default_output_delay 0.001 
 set critical_range       0.30
 
 # default number of worst path reported

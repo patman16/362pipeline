@@ -18,12 +18,12 @@ initial begin
 
   //Load IMEM from file
    if (!$value$plusargs("instrfile=%s", filename)) begin
-      filename = "instr_multiply.hex";
+      filename = "instr_fib.hex";
    end
    $readmemh(filename, top.IFU.IMEM.mem);
   // Load DMEM from file
   if (!$value$plusargs("datafile=%s", filename)) begin
-      filename = "data_multiply.hex";
+      filename = "data_fib.hex";
   end
   $readmemh(filename, top.mem.DMEM.mem);
 
@@ -41,7 +41,7 @@ always @(top.instruction_0) begin
    if (top.instruction_0 == 32'h44000300)
    begin
    #10
-   for (i = 0; i < 12; i = i + 4)
+   for (i = 8192; i < 8376; i = i + 4)
    $display("Mem[%d] = %d", i, {top.mem.DMEM.mem[i], top.mem.DMEM.mem[i+1], top.mem.DMEM.mem[i+2], top.mem.DMEM.mem[i+3]});
    $finish;
    end

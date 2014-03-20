@@ -46,11 +46,11 @@ Initializing...
 # 
 # ========== Copyright Header End ============================================
 sh date
-Tue Mar 18 20:33:43 CDT 2014
+Wed Mar 19 19:28:49 CDT 2014
 sh hostname
 joker.ece.northwestern.edu
 sh uptime
- 20:33:43 up 2 days, 41 min,  1 user,  load average: 0.32, 0.28, 0.27
+ 19:28:49 up 12:19,  1 user,  load average: 0.08, 0.03, 0.14
 remove_design -all
 1
 if {[file exists template]} {
@@ -172,8 +172,9 @@ set default_setup_skew       0.375
 0.375
 set default_hold_skew        0.080
 0.080
-set default_clock_transition 0.050
-0.050
+set default_clock_transition 0
+0
+#set default_clock_transition 0.050
 set max_transition   0.110
 0.110
 set max_fanout         6
@@ -182,12 +183,14 @@ set max_fanout         6
 #set default_input_delay  0.15
 #set default_output_delay 0.2 
 #set critical_range       0.30
-set default_input_delay  0.001
+set default_input_delay  0
 Information: Use of Variable 'default_input_delay' is not recommended. This variable will be obsolete in a future release. (INFO-101)
-0.001
-set default_output_delay 0.001 
+0
+#set default_input_delay  0.001
+set default_output_delay 0 
 Information: Use of Variable 'default_output_delay' is not recommended. This variable will be obsolete in a future release. (INFO-101)
-0.001
+0
+#set default_output_delay 0.001 
 set critical_range       0.30
 0.30
 # default number of worst path reported
@@ -209,14 +212,14 @@ set black_box_designs {}
 set mem_libs {}
 set compile_effort   "high"
 high
-set area_effort "low"
-low
+set area_effort "high"
+high
 set compile_flatten_all 1
 1
 set compile_no_new_cells_at_top_level false
 false
-set default_clk clk
-clk
+set default_clk clock
+clock
 set default_clk_freq  1000
 1000
 set default_setup_skew  0.00
@@ -225,8 +228,8 @@ set default_hold_skew  0.00
 0.00
 set default_clk_transition  0.00
 0.00
-set clk_list {                                        {clk   800.0   0.000   0.000   0.000}        }
-                                        {clk   800.0   0.000   0.000   0.000}        
+set clk_list {                                        {clock   0.05   0.000   0.000   0.000}        }
+                                        {clock   0.05   0.000   0.000   0.000}        
 set ideal_net_list {}
 set false_path_list {}
 set enforce_input_fanout_one     0
@@ -267,7 +270,7 @@ foreach include_path $include_paths {
    set search_path [concat $search_path $dv_root/$include_path]
 }
 sh date
-Tue Mar 18 20:33:43 CDT 2014
+Wed Mar 19 19:28:49 CDT 2014
 set link_library [concat $link_library                          $mem_libs                          $black_box_designs 		      NangateOpenCellLibrary.db]
 * your_library.db NangateOpenCellLibrary.db
 #/homes/gho705/fault/synthesis-stuff/lib/FreePDK45/osu_soc/lib/files/gscl45nm.db]
@@ -314,7 +317,7 @@ Warning: Can't read link_library file 'your_library.db'. (UID-3)
 Compiling source file /home/pjh693/362pipeline/alu/2to1_mux_n.v
 Presto compilation completed successfully.
 Current design is now '/home/pjh693/362pipeline/alu/mux_2to1_n.db:mux_2to1_n'
-Loaded 1 design.
+Loaded 4 designs.
 Current design is 'mux_2to1_n'.
 Loading verilog file '/home/pjh693/362pipeline/alu/add_sub.v'
 Detecting input file type automatically (-rtl or -netlist).
@@ -325,9 +328,10 @@ Warning: Can't read link_library file 'your_library.db'. (UID-3)
 Compiling source file /home/pjh693/362pipeline/alu/add_sub.v
 Warning:  Starting with the 2000.11-1 release, the Presto Verilog reader treats Verilog 'integer' types as signed; synthesized result may not match earlier versions of HDL Compiler. (VER-314)
 Warning:  Starting with the 2000.11-1 release, the Presto Verilog reader treats Verilog 'integer' types as signed; synthesized result may not match earlier versions of HDL Compiler. (VER-314)
+Warning:  Starting with the 2000.11-1 release, the Presto Verilog reader treats Verilog 'integer' types as signed; synthesized result may not match earlier versions of HDL Compiler. (VER-314)
 Presto compilation completed successfully.
 Current design is now '/home/pjh693/362pipeline/alu/adder_32.db:adder_32'
-Loaded 2 designs.
+Loaded 3 designs.
 Current design is 'adder_32'.
 Loading verilog file '/home/pjh693/362pipeline/alu/fulladder.v'
 Detecting input file type automatically (-rtl or -netlist).
@@ -412,12 +416,12 @@ Running PRESTO HDLC
 Warning: Can't read link_library file 'your_library.db'. (UID-3)
 Compiling source file /home/pjh693/362pipeline/singlecycle/4to1_mux_n.v
 
-Statistics for case statements in always block at line 9 in file
+Statistics for case statements in always block at line 8 in file
 	'/home/pjh693/362pipeline/singlecycle/4to1_mux_n.v'
 ===============================================
 |           Line           |  full/ parallel  |
 ===============================================
-|            11            |    auto/auto     |
+|            10            |    auto/auto     |
 ===============================================
 Presto compilation completed successfully.
 Current design is now '/home/pjh693/362pipeline/singlecycle/mux_4to1_n.db:mux_4to1_n'
@@ -490,7 +494,7 @@ Warning: Can't read link_library file 'your_library.db'. (UID-3)
 Compiling source file /home/pjh693/362pipeline/singlecycle/extender.v
 Presto compilation completed successfully.
 Current design is now '/home/pjh693/362pipeline/singlecycle/extender.db:extender'
-Loaded 1 design.
+Loaded 3 designs.
 Current design is 'extender'.
 Loading verilog file '/home/pjh693/362pipeline/singlecycle/ifu.v'
 Detecting input file type automatically (-rtl or -netlist).
@@ -499,16 +503,16 @@ Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
 Warning: Can't read link_library file 'your_library.db'. (UID-3)
 Compiling source file /home/pjh693/362pipeline/singlecycle/ifu.v
-Warning:  /home/pjh693/362pipeline/singlecycle/ifu.v:28: the undeclared symbol 'open4' assumed to have the default net type, which is 'wire'. (VER-936)
-Warning:  /home/pjh693/362pipeline/singlecycle/ifu.v:46: The statements in initial blocks are ignored. (VER-281)
+Warning:  /home/pjh693/362pipeline/singlecycle/ifu.v:27: the undeclared symbol 'open4' assumed to have the default net type, which is 'wire'. (VER-936)
+Warning:  /home/pjh693/362pipeline/singlecycle/ifu.v:45: The statements in initial blocks are ignored. (VER-281)
 
 Inferred memory devices in process
-	in routine PCReg line 8 in file
+	in routine PCReg line 7 in file
 		'/home/pjh693/362pipeline/singlecycle/ifu.v'.
 ===============================================================================
 |    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===============================================================================
-|       out_reg       | Flip-flop |  32   |  Y  | N  | Y  | N  | N  | N  | N  |
+|       out_reg       | Flip-flop |  30   |  Y  | N  | Y  | N  | N  | N  | N  |
 ===============================================================================
 Presto compilation completed successfully.
 Current design is now '/home/pjh693/362pipeline/singlecycle/PCReg.db:PCReg'
@@ -521,12 +525,100 @@ Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
 Warning: Can't read link_library file 'your_library.db'. (UID-3)
 Compiling source file /home/pjh693/362pipeline/singlecycle/registers.v
-Warning:  /home/pjh693/362pipeline/singlecycle/registers.v:32: The statements in initial blocks are ignored. (VER-281)
-Warning:  /home/pjh693/362pipeline/singlecycle/registers.v:37: The statements in initial blocks are ignored. (VER-281)
-Error:  /home/pjh693/362pipeline/singlecycle/registers.v:9: Clock clk used as data. (ELAB-305)
-*** Presto compilation terminated with 1 errors. ***
-Error: Can't read 'verilog' file '/home/pjh693/362pipeline/singlecycle/registers.v'. (UID-59)
-No designs were read
+Warning:  /home/pjh693/362pipeline/singlecycle/registers.v:20: The statements in initial blocks are ignored. (VER-281)
+Warning:  /home/pjh693/362pipeline/singlecycle/registers.v:25: The statements in initial blocks are ignored. (VER-281)
+Warning:  Starting with the 2000.11-1 release, the Presto Verilog reader treats Verilog 'integer' types as signed; synthesized result may not match earlier versions of HDL Compiler. (VER-314)
+
+Statistics for case statements in always block at line 28 in file
+	'/home/pjh693/362pipeline/singlecycle/registers.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            31            |    auto/auto     |
+===============================================
+
+Inferred memory devices in process
+	in routine registers line 28 in file
+		'/home/pjh693/362pipeline/singlecycle/registers.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     intregs_reg     | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+|     fpregs_reg      | Flip-flop |  32   |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Statistics for MUX_OPs
+===========================================================
+| block name/line  | Inputs | Outputs | # sel inputs | MB |
+===========================================================
+|   registers/11   |   32   |   64    |      5       | N  |
+|   registers/12   |   32   |   64    |      5       | N  |
+===========================================================
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/singlecycle/registers.db:registers'
+Loaded 1 design.
+Current design is 'registers'.
 Loading verilog file '/home/pjh693/362pipeline/exec.v'
 Detecting input file type automatically (-rtl or -netlist).
 Running DC verilog reader
@@ -604,32 +696,23 @@ Reading with Presto HDL Compiler (equivalent to -rtl option).
 Running PRESTO HDLC
 Warning: Can't read link_library file 'your_library.db'. (UID-3)
 Compiling source file /home/pjh693/362pipeline/pipeline.v
-Warning:  /home/pjh693/362pipeline/pipeline.v:24: The statements in initial blocks are ignored. (VER-281)
+Warning:  /home/pjh693/362pipeline/pipeline.v:31: The statements in initial blocks are ignored. (VER-281)
 
 Inferred memory devices in process
-	in routine pipeline line 24 in file
-		'/home/pjh693/362pipeline/pipeline.v'.
-===============================================================================
-|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
-===============================================================================
-|    stallack_reg     | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
-===============================================================================
-
-Inferred memory devices in process
-	in routine pipeline line 30 in file
+	in routine pipeline line 31 in file
 		'/home/pjh693/362pipeline/pipeline.v'.
 ===========================================================================
 |    Register Name    | Type  | Width | Bus | MB | AR | AS | SR | SS | ST |
 ===========================================================================
 |      stall_reg      | Latch |   1   |  N  | N  | N  | N  | -  | -  | -  |
-|    stallack_reg2    | Latch |   1   |  N  | N  | N  | N  | -  | -  | -  |
-|      fwdB_reg       | Latch |   2   |  Y  | N  | N  | N  | -  | -  | -  |
+|    stallack_reg     | Latch |   1   |  N  | N  | N  | N  | -  | -  | -  |
 |      fwdA_reg       | Latch |   2   |  Y  | N  | N  | N  | -  | -  | -  |
+|      fwdB_reg       | Latch |   2   |  Y  | N  | N  | N  | -  | -  | -  |
 ===========================================================================
-Error:  /home/pjh693/362pipeline/pipeline.v:24: Net 'stallack' or a directly connected net is driven by more than one source, and not all drivers are three-state. (ELAB-366)
-*** Presto compilation terminated with 1 errors. ***
-Error: Can't read 'verilog' file '/home/pjh693/362pipeline/pipeline.v'. (UID-59)
-No designs were read
+Presto compilation completed successfully.
+Current design is now '/home/pjh693/362pipeline/pipeline.db:pipeline'
+Loaded 1 design.
+Current design is 'pipeline'.
 Loading verilog file '/home/pjh693/362pipeline/regdecode.v'
 Detecting input file type automatically (-rtl or -netlist).
 Running DC verilog reader
@@ -693,11 +776,10 @@ foreach_in_collection design_object [get_designs] {
    lappend design_list $design_name
 }
 sh date
-Tue Mar 18 20:33:44 CDT 2014
+Wed Mar 19 19:28:53 CDT 2014
 current_design $top_module
-Error: Can't find design 'pipeline'. (UID-109)
-Current design is 'WrRegister'.
-{WrRegister}
+Current design is 'pipeline'.
+{pipeline}
 echo $top_module
 pipeline
 # if {[get_designs -hier $dont_touch_modules] != {}} {
@@ -706,10 +788,10 @@ pipeline
 set dc_shell_status [ link ]
 Warning: Can't read link_library file 'your_library.db'. (UID-3)
 
-  Linking design 'WrRegister'
+  Linking design 'pipeline'
   Using the following designs and libraries:
   --------------------------------------------------------------------------
-  * (30 designs)              /home/pjh693/362pipeline/WrRegister.db, etc
+  * (38 designs)              /home/pjh693/362pipeline/pipeline.db, etc
   NangateOpenCellLibrary (library) /home/pjh693/362pipeline/NangateOpenCellLibrary.db
 
 1
@@ -720,15 +802,13 @@ if {$dc_shell_status == 0} {
    quit
 }
 current_design $top_module
-Error: Can't find design 'pipeline'. (UID-109)
-Current design is 'WrRegister'.
-{WrRegister}
+Current design is 'pipeline'.
+{pipeline}
 echo $top_module
 pipeline
 current_design $top_module
-Error: Can't find design 'pipeline'. (UID-109)
-Current design is 'WrRegister'.
-{WrRegister}
+Current design is 'pipeline'.
+{pipeline}
 echo $top_module
 pipeline
 set clk_name_list [list]
@@ -810,12 +890,99 @@ foreach_in_collection input_object [all_inputs] {
    }
 }
 echo $ideal_inputs
-clk
+clock
 echo $non_ideal_inputs
-clk dregwr {drw[4]} {drw[3]} {drw[2]} {drw[1]} {drw[0]} {dbusW[31]} {dbusW[30]} {dbusW[29]} {dbusW[28]} {dbusW[27]} {dbusW[26]} {dbusW[25]} {dbusW[24]} {dbusW[23]} {dbusW[22]} {dbusW[21]} {dbusW[20]} {dbusW[19]} {dbusW[18]} {dbusW[17]} {dbusW[16]} {dbusW[15]} {dbusW[14]} {dbusW[13]} {dbusW[12]} {dbusW[11]} {dbusW[10]} {dbusW[9]} {dbusW[8]} {dbusW[7]} {dbusW[6]} {dbusW[5]} {dbusW[4]} {dbusW[3]} {dbusW[2]} {dbusW[1]} {dbusW[0]} {dfpoint[1]} {dfpoint[0]} {ddelayslot2[31]} {ddelayslot2[30]} {ddelayslot2[29]} {ddelayslot2[28]} {ddelayslot2[27]} {ddelayslot2[26]} {ddelayslot2[25]} {ddelayslot2[24]} {ddelayslot2[23]} {ddelayslot2[22]} {ddelayslot2[21]} {ddelayslot2[20]} {ddelayslot2[19]} {ddelayslot2[18]} {ddelayslot2[17]} {ddelayslot2[16]} {ddelayslot2[15]} {ddelayslot2[14]} {ddelayslot2[13]} {ddelayslot2[12]} {ddelayslot2[11]} {ddelayslot2[10]} {ddelayslot2[9]} {ddelayslot2[8]} {ddelayslot2[7]} {ddelayslot2[6]} {ddelayslot2[5]} {ddelayslot2[4]} {ddelayslot2[3]} {ddelayslot2[2]} {ddelayslot2[1]} {ddelayslot2[0]} djal
+clock reset
 set_input_delay $default_input_delay -clock $default_clk $non_ideal_inputs
 1
 set_output_delay $default_output_delay -clock $default_clk [all_outputs]
+1
+report_net_fanout -high_fanout
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating graph... (UID-83)
+Warning: Design 'pipeline' contains 3 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Information: Timing loop detected. (OPT-150)
+	C286/A C286/Z C234/DATA2_0 C234/Z_0 C237/DATA1_0 C237/Z_0 C239/DATA2_0 C239/Z_0 C243/DATA1_0 C243/Z_0 stall_reg/enable stall_reg/Q B_9/A B_9/Z C232/DATA1_0 C232/Z_0 stallack_reg/enable stallack_reg/Q 
+Information: Timing loop detected. (OPT-150)
+	C248/A C248/Z I_27/A I_27/Z C286/B C286/Z C234/DATA2_0 C234/Z_0 C237/DATA1_0 C237/Z_0 C239/DATA2_0 C239/Z_0 C243/DATA1_0 C243/Z_0 stall_reg/enable stall_reg/Q 
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C286'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C248'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C260'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C260'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C275'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C251'
+         to break a timing loop. (OPT-314)
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Information: Updating design information... (UID-85)
+Warning: Design 'pipeline' contains 3 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Information: Timing loop detected. (OPT-150)
+	C286/A C286/Z C234/DATA2_0 C234/Z_0 C237/DATA1_0 C237/Z_0 C239/DATA2_0 C239/Z_0 C243/DATA1_0 C243/Z_0 stall_reg/enable stall_reg/Q B_9/A B_9/Z C232/DATA1_0 C232/Z_0 stallack_reg/enable stallack_reg/Q 
+Information: Timing loop detected. (OPT-150)
+	C248/A C248/Z I_27/A I_27/Z C286/B C286/Z C234/DATA2_0 C234/Z_0 C237/DATA1_0 C237/Z_0 C239/DATA2_0 C239/Z_0 C243/DATA1_0 C243/Z_0 stall_reg/enable stall_reg/Q 
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C286'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C248'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C260'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C260'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C275'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C251'
+         to break a timing loop. (OPT-314)
+ 
+****************************************
+Report : net fanout
+        -high_fanout
+Design : pipeline
+Version: D-2010.03-SP5
+Date   : Wed Mar 19 19:28:54 2014
+****************************************
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+pipeline               5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Attributes:
+   dr - drc disabled
+    c - annotated capacitance
+    d - dont_touch
+    i - ideal_net
+    I - ideal_network
+    p - includes pin load
+    r - annotated resistance
+    h - high fanout
+  mvd - mv related dont_touch
+
+Net                 Fanout   Attributes   Capacitance   Driver
+--------------------------------------------------------------------------------
+clock                 2540   dr, d, h      1001.88      clock
+decode/register/*Logic0*
+                       765   dr               0.67      decode/register/U2/**logic_0**
+decode/regfile/*Logic0*
+                     14464   dr, h         1001.88      decode/regfile/U1/**logic_0**
+execstage/register/*Logic0*
+                      1448   dr, h         1001.88      execstage/register/U2/**logic_0**
+mem/mRegister/*Logic0*
+                       777   dr               0.68      mem/mRegister/U2/**logic_0**
+rgwrite/writereg/*Logic0*
+                       511   dr               0.45      rgwrite/writereg/U2/**logic_0**
+1
+set_ideal_net $default_clk
+Information: It is recommended to use set_ideal_network command instead of set_ideal_net. (UID-604)
+Warning: Replacing set_ideal_net command with set_ideal_network -no_propagate command. (UID-605)
+Warning: Transferring ideal_net attribute onto the driver pin clock of net clock. (UID-606)
 1
 if {$clk_name_list != {} } {
    group_path -name "reg2reg" -critical_range $critical_range -from [ all_registers -clock_pins ] -to [ all_registers -data_pins ]
@@ -823,8 +990,41 @@ if {$clk_name_list != {} } {
    group_path -name "reg2out" -from [ all_registers -clock_pins ] -to [all_outputs]
 }
 Information: Updating graph... (UID-83)
+Warning: Design 'pipeline' contains 3 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Information: Timing loop detected. (OPT-150)
+	C286/A C286/Z C234/DATA2_0 C234/Z_0 C237/DATA1_0 C237/Z_0 C239/DATA2_0 C239/Z_0 C243/DATA1_0 C243/Z_0 stall_reg/enable stall_reg/Q B_9/A B_9/Z C232/DATA1_0 C232/Z_0 stallack_reg/enable stallack_reg/Q 
+Information: Timing loop detected. (OPT-150)
+	C248/A C248/Z I_27/A I_27/Z C286/B C286/Z C234/DATA2_0 C234/Z_0 C237/DATA1_0 C237/Z_0 C239/DATA2_0 C239/Z_0 C243/DATA1_0 C243/Z_0 stall_reg/enable stall_reg/Q 
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C286'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C248'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C260'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C260'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C275'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C251'
+         to break a timing loop. (OPT-314)
 Information: Updating graph... (UID-83)
-Information: Updating graph... (UID-83)
+Warning: Design 'pipeline' contains 3 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Information: Timing loop detected. (OPT-150)
+	C286/A C286/Z C234/DATA2_0 C234/Z_0 C237/DATA1_0 C237/Z_0 C239/DATA2_0 C239/Z_0 C243/DATA1_0 C243/Z_0 stall_reg/enable stall_reg/Q B_9/A B_9/Z C232/DATA1_0 C232/Z_0 stallack_reg/enable stallack_reg/Q 
+Information: Timing loop detected. (OPT-150)
+	C248/A C248/Z I_27/A I_27/Z C286/B C286/Z C234/DATA2_0 C234/Z_0 C237/DATA1_0 C237/Z_0 C239/DATA2_0 C239/Z_0 C243/DATA1_0 C243/Z_0 stall_reg/enable stall_reg/Q 
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C286'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C248'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C260'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C260'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C275'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A' and 'Z' on cell 'C251'
+         to break a timing loop. (OPT-314)
 1
 group_path -name "in2out"  -from $non_ideal_inputs -to [all_outputs]
 1
@@ -866,9 +1066,9 @@ if {$dont_use_cells != 0} {
 Error: can't read "dont_use_cells": no such variable
 	Use error_info for more info. (CMD-013)
 sh date
-Tue Mar 18 20:33:44 CDT 2014
+Wed Mar 19 19:28:55 CDT 2014
 sh uptime
- 20:33:44 up 2 days, 41 min,  1 user,  load average: 0.32, 0.28, 0.27
+ 19:28:55 up 12:19,  1 user,  load average: 0.22, 0.07, 0.14
 # Switch off the dont_touch attribute globally for set_size_only cells
 set dont_touch_nets_with_size_only_cells false
 false
@@ -877,8 +1077,7 @@ false
 if {[info exists compile_flatten_all] && ($compile_flatten_all  == 1)} {
       ungroup -flatten -all
    }
-Warning: Design has no hierarchy.  No cells can be ungrouped. (UID-228)
-0
+1
 # compile !!
 if {[info exists project_io_cfg] && ($project_io_cfg == 1) } {
       set dc_shell_status [ compile -boundary_optimization -exact_map -map_effort $compile_effort -area_effort $area_effort]
@@ -895,22 +1094,200 @@ Information: Evaluating DesignWare library utilization. (UISN-27)
 ============================================================================
 | DesignWare Building Block Library       |      Version       | Available |
 ============================================================================
-| Basic DW Building Blocks                | D-2010.03-DWBB_1010 |    *     |
+| Basic DW Building Blocks                | D-2010.03-DWBB_1010
+                                                               |     *     |
 | Licensed DW Building Blocks             |                    |           |
 ============================================================================
+
+
+Information: There are 502 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
 
 
 
   Beginning Pass 1 Mapping
   ------------------------
-  Processing 'WrRegister'
+  Processing 'pipeline'
+Information: The register 'mem/mRegister/qMemWr_reg' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qloadext_reg' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qJump_reg' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qDsize_reg[1]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qDsize_reg[0]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[31]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[30]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[29]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[28]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[27]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[26]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[25]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[24]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[23]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[22]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[21]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[20]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[19]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[18]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[17]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[16]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[15]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[14]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[13]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[12]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[11]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[10]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[9]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[8]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[7]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[6]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[5]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[4]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[3]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[2]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[1]' will be removed. (OPT-1207)
+Information: The register 'mem/mRegister/qBusB_reg[0]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[25]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[24]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[23]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[22]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[21]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[20]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[19]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[18]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[17]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[16]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[15]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[14]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[13]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[12]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[11]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[10]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[9]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[8]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[7]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[6]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[5]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[4]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[3]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[2]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[1]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qInst_reg[0]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qRegDst_reg' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qMemWr_reg' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qJump_reg' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qDsize_reg[1]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qDsize_reg[0]' will be removed. (OPT-1207)
+Information: The register 'execstage/register/qLoadext_reg' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[31]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[30]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[29]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[28]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[27]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[26]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[25]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[24]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[23]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[22]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[21]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[20]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[19]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[18]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[17]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[16]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[15]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[14]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[13]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[12]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[11]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[10]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[9]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[8]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[7]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[6]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[5]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[4]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[3]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[2]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[1]' will be removed. (OPT-1207)
+Information: The register 'decode/register/qdelay_reg[0]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[29]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[28]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[27]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[26]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[25]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[24]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[23]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[22]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[21]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[20]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[19]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[18]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[17]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[16]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[15]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[14]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[13]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[12]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[11]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[10]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[9]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[8]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[7]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[6]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[5]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[4]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[3]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[2]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[1]' will be removed. (OPT-1207)
+Information: The register 'IFU/PC/out_reg[0]' will be removed. (OPT-1207)
 Warning: Can't read link_library file 'your_library.db'. (UID-3)
 
   Updating timing information
 Information: Updating design information... (UID-85)
+Information: Timing loop detected. (OPT-150)
+	U8509/A1 U8509/ZN U8508/A U8508/ZN U8507/A U8507/ZN stall_reg/G stall_reg/Q U8521/A U8521/ZN U8518/A1 U8518/ZN stallack_reg/G stallack_reg/Q U8519/A U8519/ZN C275/A1 C275/ZN U8511/A1 U8511/ZN 
+Information: Timing loop detected. (OPT-150)
+	C260/A1 C260/ZN U8515/A1 U8515/ZN U8509/A2 U8509/ZN U8508/A U8508/ZN U8507/A U8507/ZN stall_reg/G stall_reg/Q U8521/A U8521/ZN U8518/A1 U8518/ZN stallack_reg/G stallack_reg/Q U8519/A U8519/ZN 
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'C275'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'C260'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'C248'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'G' and 'Q' on cell 'stall_reg'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'G' and 'Q' on cell 'stallack_reg'
+         to break a timing loop. (OPT-314)
+
+  Beginning Implementation Selection
+  ----------------------------------
+Warning: Can't read link_library file 'your_library.db'. (UID-3)
+  Processing 'pipeline_DW01_cmp6_0'
+  Processing 'pipeline_DW01_cmp6_1'
+  Processing 'pipeline_DW01_cmp6_2'
+  Processing 'pipeline_DW01_cmp6_3'
+  Processing 'pipeline_DW01_cmp6_4'
+  Processing 'pipeline_DW01_cmp6_5'
 
   Beginning Mapping Optimizations  (High effort)
   -------------------------------
+
+   ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
+    TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:26   41906.7      0.00       0.0       0.0                          
+    0:00:26   41906.7      0.00       0.0       0.0                          
+    0:00:26   41906.7      0.00       0.0       0.0                          
+    0:00:26   41906.7      0.00       0.0       0.0                          
+    0:00:27   41906.7      0.00       0.0       0.0                          
+    0:00:29   36135.8      0.00       0.0       0.0                          
+    0:00:29   36135.8      0.00       0.0       0.0                          
+    0:00:29   36135.8      0.00       0.0       0.0                          
+    0:00:29   36135.8      0.00       0.0       0.0                          
+    0:00:29   36135.8      0.00       0.0       0.0                          
+    0:00:29   36135.8      0.00       0.0       0.0                          
+    0:00:29   36135.8      0.00       0.0       0.0                          
+    0:00:29   36135.8      0.00       0.0       0.0                          
+
+
 
   Beginning Delay Optimization Phase
   ----------------------------------
@@ -918,9 +1295,9 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
     TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:00     378.4      0.00       0.0       0.0                          
-    0:00:00     378.4      0.00       0.0       0.0                          
-    0:00:00     378.4      0.00       0.0       0.0                          
+    0:00:30   36135.8      0.00       0.0       0.0                          
+    0:00:30   36135.8      0.00       0.0       0.0                          
+    0:00:30   36135.8      0.00       0.0       0.0                          
 
 
   Beginning Critical Range Optimization
@@ -929,7 +1306,7 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
     TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:00     378.4      0.00       0.0       0.0                          
+    0:00:30   36135.8      0.00       0.0       0.0                          
 
 
   Beginning Area-Recovery Phase  (cleanup)
@@ -938,17 +1315,24 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
     TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:00     378.4      0.00       0.0       0.0                          
-    0:00:00     378.4      0.00       0.0       0.0                          
-    0:00:00     378.4      0.00       0.0       0.0                          
-    0:00:00     378.4      0.00       0.0       0.0                          
-    0:00:00     378.4      0.00       0.0       0.0                          
-    0:00:00     378.4      0.00       0.0       0.0                          
-    0:00:00     378.4      0.00       0.0       0.0                          
-    0:00:00     378.4      0.00       0.0       0.0                          
-    0:00:00     378.4      0.00       0.0       0.0                          
-    0:00:00     378.4      0.00       0.0       0.0                          
-    0:00:00     378.4      0.00       0.0       0.0                          
+    0:00:30   36135.8      0.00       0.0       0.0                          
+    0:00:30   36135.8      0.00       0.0       0.0                          
+    0:00:30   35933.2      0.00       0.0       0.0                          
+    0:00:31   35823.8      0.00       0.0       0.0                          
+    0:00:31   35754.8      0.00       0.0       0.0                          
+    0:00:32   35702.6      0.00       0.0       0.0                          
+    0:00:33   35690.0      0.00       0.0       0.0                          
+    0:00:33   35682.0      0.00       0.0       0.0                          
+    0:00:33   35677.8      0.00       0.0       0.0                          
+    0:00:33   35676.5      0.00       0.0       0.0                          
+    0:00:33   35675.1      0.00       0.0       0.0                          
+    0:00:33   35675.1      0.00       0.0       0.0                          
+    0:00:33   35675.1      0.00       0.0       0.0                          
+    0:00:33   35675.1      0.00       0.0       0.0                          
+    0:00:33   35675.1      0.00       0.0       0.0                          
+    0:00:33   35675.1      0.00       0.0       0.0                          
+    0:00:33   35675.1      0.00       0.0       0.0                          
+    0:00:34   35675.1      0.00       0.0       0.0                          
 
 
   Beginning Critical Range Optimization
@@ -957,11 +1341,14 @@ Information: Updating design information... (UID-85)
    ELAPSED            WORST NEG TOTAL NEG  DESIGN                            
     TIME      AREA      SLACK     SLACK   RULE COST         ENDPOINT         
   --------- --------- --------- --------- --------- -------------------------
-    0:00:00     378.4      0.00       0.0       0.0                          
+    0:00:34   35675.1      0.00       0.0       0.0                          
+    0:00:34   35675.1      0.00       0.0       0.0                          
 Loading db file '/home/pjh693/362pipeline/NangateOpenCellLibrary.db'
 
   Optimization Complete
   ---------------------
+Warning: Design 'pipeline' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+     Net 'clock': 2409 load(s), 1 driver(s)
 1
 if {$dc_shell_status == 0} {
       echo "*******************************************************"
@@ -970,7 +1357,7 @@ if {$dc_shell_status == 0} {
       quit
    }
 sh date
-Tue Mar 18 20:33:45 CDT 2014
+Wed Mar 19 19:29:30 CDT 2014
 ###########################################################################
 # 5e. Insert Scan - Hook up the scan chain.
 ###########################################################################
@@ -1035,200 +1422,27 @@ if {[info exists project_sparc_cfg] && ($project_sparc_cfg == 1) } {
 
 ### section 5e. will be skipped if user want to use PC flow
 }
-Error: Can't find design 'pipeline'. (UID-109)
-Current design is 'WrRegister'.
-Warning: Can't find object 'pipeline' in design 'WrRegister'. (UID-95)
-Current design is 'mux_2to1_n'.
+Current design is 'pipeline'.
 Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
+Current design is 'pipeline'.
 Information: Updating graph... (UID-83)
-Current design is 'adder_32'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'add_sub_32'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'fulladder'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'mult'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'constant'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'equal'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'aNotb'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'greaterThan'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'greaterOrEqual'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'Notab'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'lessThan'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'lessOrEqual'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'sll'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'sra'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'srl'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'mux_4to1_n'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'alu'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'control'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Information: Attribute 'scanned_by_test_compiler' is set on 5 objects. (UID-186)
-Current design is 'extender'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Current design is 'PCReg'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Information: Attribute 'scanned_by_test_compiler' is set on 32 objects. (UID-186)
-Current design is 'ifu'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Building the design 'adder_32' instantiated from design 'ifu' with
-	the parameters "N=30". (HDL-193)
-Warning: Cannot find the design 'adder_32' in the library 'WORK'. (LBR-1)
-Information: Building the design 'mux_2to1_n' instantiated from design 'ifu' with
-	the parameters "n=30". (HDL-193)
-Warning: Cannot find the design 'mux_2to1_n' in the library 'WORK'. (LBR-1)
-Information: Building the design 'PCReg' instantiated from design 'ifu' with
-	the parameters "width=30". (HDL-193)
-Warning: Cannot find the design 'PCReg' in the library 'WORK'. (LBR-1)
-Information: Building the design 'imem' instantiated from design 'ifu' with
-	the parameters "SIZE=1024". (HDL-193)
-Warning: Cannot find the design 'imem' in the library 'WORK'. (LBR-1)
-Information: Building the design 'extender' instantiated from design 'ifu' with
-	the parameters "inN=26,outN=32". (HDL-193)
-Warning: Cannot find the design 'extender' in the library 'WORK'. (LBR-1)
-Warning: Unable to resolve reference 'adder_32' in 'ifu'. (LINK-5)
-Warning: Unable to resolve reference 'mux_2to1_n' in 'ifu'. (LINK-5)
-Warning: Unable to resolve reference 'PCReg' in 'ifu'. (LINK-5)
-Warning: Unable to resolve reference 'imem' in 'ifu'. (LINK-5)
-Warning: Unable to resolve reference 'extender' in 'ifu'. (LINK-5)
-Warning: Design 'ifu' has '5' unresolved references. For more detailed information, use the "link" command. (UID-341)
-Information: Updating graph... (UID-83)
-Current design is 'EXRegister'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Warning: Design 'EXRegister' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
-Information: Attribute 'scanned_by_test_compiler' is set on 181 objects. (UID-186)
-Current design is 'exec'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Building the design 'mux_2to1_n' instantiated from design 'exec' with
-	the parameters "n=32". (HDL-193)
-Warning: Cannot find the design 'mux_2to1_n' in the library 'WORK'. (LBR-1)
-Warning: Unable to resolve reference 'mux_2to1_n' in 'exec'. (LINK-5)
-Warning: Design 'exec' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Warning: Design 'exec' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
-Warning: Design 'exec' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
-Warning: Design 'exec' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
-Information: Attribute 'scanned_by_test_compiler' is set on 182 objects. (UID-186)
-Current design is 'MEMRegister'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Information: Attribute 'scanned_by_test_compiler' is set on 111 objects. (UID-186)
-Current design is 'mem_unit'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Building the design 'dmem' instantiated from design 'mem_unit' with
-	the parameters "SIZE=16384". (HDL-193)
-Warning: Cannot find the design 'dmem' in the library 'WORK'. (LBR-1)
-Information: Building the design 'extender' instantiated from design 'mem_unit' with
-	the parameters "inN=8,outN=32". (HDL-193)
-Warning: Cannot find the design 'extender' in the library 'WORK'. (LBR-1)
-Information: Building the design 'mux_4to1_n' instantiated from design 'mem_unit' with
-	the parameters "n=32". (HDL-193)
-Warning: Cannot find the design 'mux_4to1_n' in the library 'WORK'. (LBR-1)
-Information: Building the design 'mux_2to1_n' instantiated from design 'mem_unit' with
-	the parameters "n=32". (HDL-193)
-Warning: Cannot find the design 'mux_2to1_n' in the library 'WORK'. (LBR-1)
-Warning: Unable to resolve reference 'dmem' in 'mem_unit'. (LINK-5)
-Warning: Unable to resolve reference 'extender' in 'mem_unit'. (LINK-5)
-Warning: Unable to resolve reference 'mux_4to1_n' in 'mem_unit'. (LINK-5)
-Warning: Unable to resolve reference 'mux_2to1_n' in 'mem_unit'. (LINK-5)
-Warning: Design 'mem_unit' has '4' unresolved references. For more detailed information, use the "link" command. (UID-341)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Warning: Design 'mem_unit' has '4' unresolved references. For more detailed information, use the "link" command. (UID-341)
-Warning: Design 'mem_unit' has '4' unresolved references. For more detailed information, use the "link" command. (UID-341)
-Information: Attribute 'scanned_by_test_compiler' is set on 111 objects. (UID-186)
-Current design is 'IDRegister'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Information: Attribute 'scanned_by_test_compiler' is set on 96 objects. (UID-186)
-Current design is 'RegDecode'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Building the design 'registers'. (HDL-193)
-Warning: Cannot find the design 'registers' in the library 'WORK'. (LBR-1)
-Information: Building the design 'mux_2to1_n' instantiated from design 'RegDecode' with
-	the parameters "n=5". (HDL-193)
-Warning: Cannot find the design 'mux_2to1_n' in the library 'WORK'. (LBR-1)
-Information: Building the design 'mux_4to1_n' instantiated from design 'RegDecode' with
-	the parameters "n=32". (HDL-193)
-Warning: Cannot find the design 'mux_4to1_n' in the library 'WORK'. (LBR-1)
-Warning: Unable to resolve reference 'registers' in 'RegDecode'. (LINK-5)
-Warning: Unable to resolve reference 'mux_2to1_n' in 'RegDecode'. (LINK-5)
-Warning: Unable to resolve reference 'mux_4to1_n' in 'RegDecode'. (LINK-5)
-Warning: Design 'RegDecode' has '3' unresolved references. For more detailed information, use the "link" command. (UID-341)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Warning: Design 'RegDecode' has '3' unresolved references. For more detailed information, use the "link" command. (UID-341)
-Warning: Design 'RegDecode' has '3' unresolved references. For more detailed information, use the "link" command. (UID-341)
-Information: Attribute 'scanned_by_test_compiler' is set on 101 objects. (UID-186)
-Current design is 'WrRegister'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Updating graph... (UID-83)
-Information: Attribute 'scanned_by_test_compiler' is set on 73 objects. (UID-186)
-Current design is 'Write'.
-Warning: Can't read link_library file 'your_library.db'. (UID-3)
-Information: Building the design 'mux_2to1_n' instantiated from design 'Write' with
-	the parameters "n=32". (HDL-193)
-Warning: Cannot find the design 'mux_2to1_n' in the library 'WORK'. (LBR-1)
-Warning: Unable to resolve reference 'mux_2to1_n' in 'Write'. (LINK-5)
-Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
-Information: Updating graph... (UID-83)
-Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
-Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
-Information: Attribute 'scanned_by_test_compiler' is set on 73 objects. (UID-186)
-Error: Can't find design 'pipeline'. (UID-109)
-Current design is 'Write'.
+Warning: Design 'pipeline' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Information: Timing loop detected. (OPT-150)
+	U8509/A1 U8509/ZN U17481/A U17481/ZN U13394/A U13394/ZN stall_reg/G stall_reg/Q U10582/A U10582/ZN U8518/A1 U8518/ZN stallack_reg/G stallack_reg/Q U17638/A U17638/ZN C275/A1 C275/ZN U8511/A1 U8511/ZN 
+Information: Timing loop detected. (OPT-150)
+	C260/A1 C260/ZN U8515/A1 U8515/ZN U8509/A2 U8509/ZN U17481/A U17481/ZN U13394/A U13394/ZN stall_reg/G stall_reg/Q U10582/A U10582/ZN U8518/A1 U8518/ZN stallack_reg/G stallack_reg/Q U17638/A U17638/ZN 
+Warning: Disabling timing arc between pins 'A1' and 'ZN' on cell 'C275'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'G' and 'Q' on cell 'stallack_reg'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'G' and 'Q' on cell 'stall_reg'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'G' and 'Q' on cell 'stallack_reg'
+         to break a timing loop. (OPT-314)
+Warning: Disabling timing arc between pins 'G' and 'Q' on cell 'stallack_reg'
+         to break a timing loop. (OPT-314)
+Information: Attribute 'scanned_by_test_compiler' is set on 2420 objects. (UID-186)
+Current design is 'pipeline'.
 Error: can't read "dont_use_cells": no such variable
 	Use error_info for more info. (CMD-013)
 ###########################################################################
@@ -1238,16 +1452,14 @@ Error: can't read "dont_use_cells": no such variable
 define_name_rules afara_rules -map {{ {"\\*cell\\*", "UDW_"}}}
 1
 change_names -rule afara_rules -hierarchy
-Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
 1
 sh date
-Tue Mar 18 20:33:48 CDT 2014
+Wed Mar 19 19:29:31 CDT 2014
 if {[info exists use_physopt] && ($use_physopt == 1)} {
    write -format verilog -hier -output [format "%s%s%s" gate/ $top_module _hier_fromdc.v]
 } else {
    write -format verilog -hier -output [format "%s%s%s" gate/ $top_module _hier.v]
 }
-Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
 Writing verilog file '/home/pjh693/362pipeline/gate/pipeline_hier.v'.
 1
 ###########################################################################
@@ -1260,7 +1472,7 @@ redirect [format "%s%s%s" log/ $top_module _hier_timing.rep] { report_timing -ma
 # 8. Flatten hierarchy for backend tools
 ###########################################################################
 sh date
-Tue Mar 18 20:33:48 CDT 2014
+Wed Mar 19 19:29:32 CDT 2014
 # remove dont_touch attribute before flattening the design
 if { [get_designs -hier $dont_touch_modules] != {} } {
    set_dont_touch $dont_touch_modules false
@@ -1268,12 +1480,11 @@ if { [get_designs -hier $dont_touch_modules] != {} } {
 Error: can't read "dont_touch_modules": no such variable
 	Use error_info for more info. (CMD-013)
 current_design $top_module
-Error: Can't find design 'pipeline'. (UID-109)
-Current design is 'Write'.
-{Write}
+Current design is 'pipeline'.
+{pipeline}
 ungroup -all -flatten
-Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
-1
+Warning: Design has no hierarchy.  No cells can be ungrouped. (UID-228)
+0
 # Make sure flat netlist does not have "/" in signal names
 #define_name_rules hier_change -restricted "/" -replacement_char "_"
 #change_names -rule hier_change -hierarchy
@@ -1284,7 +1495,6 @@ Warning: Design 'Write' has '1' unresolved references. For more detailed informa
 # more information, see the man pages for the
 # bus_inference_style and bus_naming_style variables.
 change_names -rules verilog -hierarchy
-Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
 1
 # Write out flat netlist.  Location depends on CMP or IO synthesis
 if {[info exists project_io_cfg] && ($project_io_cfg == 1) } {
@@ -1292,7 +1502,6 @@ if {[info exists project_io_cfg] && ($project_io_cfg == 1) } {
 } else {
    write -format verilog -output [format "%s%s%s"  gate/ $top_module _flat.v]
 }
-Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
 Writing verilog file '/home/pjh693/362pipeline/gate/pipeline_flat.v'.
 1
 # Report flattened results
@@ -1317,7 +1526,6 @@ redirect [format "%s%s%s" log/ $top_module _timing.rep] { report_timing -max_pat
 # 10. Check design and Detect unmapped design
 ###########################################################################
 set unmapped_designs [get_designs -filter "is_unmapped == true" $top_module]
-Warning: Design 'Write' has '1' unresolved references. For more detailed information, use the "link" command. (UID-341)
 if {  [sizeof_collection $unmapped_designs] != 0 } {
    echo "****************************************************"
    echo "* ERROR!!!! Compile finished with unmapped logic.  *"
@@ -1328,7 +1536,7 @@ if {  [sizeof_collection $unmapped_designs] != 0 } {
 # 11. Done
 ###########################################################################
 sh date
-Tue Mar 18 20:33:48 CDT 2014
+Wed Mar 19 19:29:35 CDT 2014
 echo "run.scr completed successfully"
 run.scr completed successfully
 quit

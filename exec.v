@@ -112,7 +112,7 @@ module exec(clk, stall, dInst, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, d
 	EXRegister register (clk, stall, dInst, dRegDst, dALUSrc, dMemToReg, dRegWrite, dMemWr, dJump, dAluCtrl, dFPoint, dDsize, dLoadext, dJal, dImm32, dBusA, dBusB, dRw, dDelayslot2, Instruction, RegDst, ALUSrc, MemToReg, RegWr, MemWr, Jump, AluCtrl, FPoint, Dsize, Loadext, Jal, Imm32, BusA, BusB_inside, Rw, Delayslot2);	
 	
 	//Execution part of the single cycle
-    	mux_2to1_n #(.n(32)) MUX0(BusB_inside, Imm32, ALUSrc, mux0_out);
+    	mux_2to1_32 MUX0(BusB_inside, Imm32, ALUSrc, mux0_out);
 	alu ALU(BusA, mux0_out, AluCtrl, ALUout, open);
 	
 	assign BusB = BusB_inside;

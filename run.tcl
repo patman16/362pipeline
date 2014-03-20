@@ -202,6 +202,8 @@ echo $ideal_inputs
 echo $non_ideal_inputs
 set_input_delay $default_input_delay -clock $default_clk $non_ideal_inputs
 set_output_delay $default_output_delay -clock $default_clk [all_outputs]
+report_net_fanout -high_fanout
+set_ideal_net $default_clk
 if {$clk_name_list != {} } {
    group_path -name "reg2reg" -critical_range $critical_range -from [ all_registers -clock_pins ] -to [ all_registers -data_pins ]
    group_path -name "in2reg"  -from $non_ideal_inputs -to [ all_registers -data_pins ]

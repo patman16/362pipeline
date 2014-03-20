@@ -46,5 +46,5 @@ module Write(clk, regwritein, rwin, busWin, fpointin, delayslot2in, jalin, rw, b
 	wire [31:0] busWout, delayslot2out, source;
 	
 	WrRegister writereg(clk, regwritein, rwin, busWin, fpointin, delayslot2in, jalin, regwr, rw, busWout, fpoint, delayslot2out, jalout);
-	mux_2to1_n #(.n(32)) jalmux(busWout, delayslot2out, jalout, busW);
+	mux_2to1_32 jalmux(busWout, delayslot2out, jalout, busW);
 endmodule

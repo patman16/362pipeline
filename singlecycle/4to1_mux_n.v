@@ -1,5 +1,4 @@
-module mux_4to1_n(src0, src1, src2, src3, sel, z);
-	parameter n = 1;
+module mux_4to1_n #(parameter n = 32)  (src0, src1, src2, src3, sel, z);
 	input [(n-1):0] src0, src1, src2, src3;
 	input [1:0] sel;
 	output [(n-1):0] z;

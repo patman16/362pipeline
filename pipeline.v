@@ -1,5 +1,6 @@
-module pipeline(clock, reset);
+module pipeline(clock, reset, fake_out);
 	input clock, reset;
+	output fake_out;
 	wire branch, jump_0, jar, wrenable, regdst_0, alusrc_0, mem2reg_0, regwrite_0, memwrite_0, loadext_0, jal_0, memwrite_1, mem2reg_1, regwrite_1, jump_1, loadext_1, jal_1, regwrite_2, jump_2, jal_2;
 	wire [1:0] fpoint_0, dsize_0, fpoint_1, dsize_1, fpoint_2, fpoint_3;
 	wire [3:0] aluctrl_0;
@@ -21,15 +22,20 @@ module pipeline(clock, reset);
 	fwdB = 2'b00;
 	end
 	
-	always @ (posedge clock)
-	begin
-	if (stall)
-		stallack <= 1;
-	end
+	//always @ (posedge clock)
+	//begin
+	//if (stall)
+	//	stallack <= 1;
+	//end
 	
 	always @*
 	begin
-		if (stallack)
+		if (stall && clock)
+		begin
+		if (stall)
+			stallack <= 1;
+		end
+		else if (stallack)
 		begin
 			stallack <= 0; stall <= 0;
 		end
